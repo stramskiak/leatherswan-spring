@@ -1,0 +1,13 @@
+<div class="post-date"><span>Posted on </span><abbr itemTitle="${post.postDate}">${postCreated}</abbr>
+</div>
+<div class="post-tags">
+    #foreach ( ${tag} in ${post.tags})
+        #set ($url = $esc.url($tag.tagValue.toLowerCase()))
+          <span class="taglink">
+              <a href="/posts/tag/$url" class="big label label-default">${tag.tagValue}</a>
+          </span>
+    #end
+</div>
+#if (${post.postType.name()} == "LINK")
+<a target="_blank" href="${post.postLink}" class="remote-link" itemTitle="Go to External Site">${post.postSource}</a>
+#end

@@ -1,0 +1,94 @@
+import org.gradle.internal.os.OperatingSystem
+
+war { baseName = 'leatherswan' }
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/java', 'src/main/resources']
+		resources.srcDir 'src/main/resources'
+	}
+	test { java.srcDir 'src/test/java' }
+}
+
+configurations { providedRuntime }
+
+dependencies {
+	compile project(':jpa')
+	compile project(':mail')
+	compile project(':jsoup')
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	compile 'org.springframework.boot:spring-boot-starter-social-twitter'
+	compile 'org.springframework.boot:spring-boot-starter-social-facebook'
+	compile 'org.springframework.social:spring-social-security:1.1.4.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	compile 'org.springframework.social:spring-social-google:1.0.0.RELEASE'
+	
+	compile 'com.jayway.restassured:json-path:2.4.1'
+	compile 'com.jayway.jsonpath:json-path-assert:2.0.0'
+
+	compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
+	compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
+	compile 'com.github.dandelion:datatables-thymeleaf:1.1.0'
+
+	compile 'org.webjars:webjars-locator:0.27'
+	compile 'org.webjars:webjars-locator-core:0.27'
+	compile 'org.webjars:jquery:2.1.4'
+	compile 'org.webjars:bootstrap:3.3.4'
+	compile 'org.webjars:bootswatch:3.3.4+1'
+	compile 'org.webjars:jquery-ui:1.11.4'
+	compile 'org.webjars:jquery-ui-themes:1.11.4'
+
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+	compile 'com.fasterxml.jackson.core:jackson-core:2.6.0'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.6.0'
+	compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+
+	//noinspection GroovyAssignabilityCheck
+	testCompile project(':jpa').sourceSets.test.output
+	testCompile project(':mail').sourceSets.test.output
+}
+
+/*if (OperatingSystem.current().isWindows()) {
+	task pathingJar(type: Jar) {
+		dependsOn configurations.runtime
+		appendix = 'pathing'
+
+		doFirst {
+			manifest {
+				// Build the Class-Path for absolute paths based on runtime dependencies.
+				attributes "Class-Path": configurations.runtime.files.collect {
+					it.toURL().toString().replaceFirst(/file:\/+/, '/')
+				}.join(' ')
+			}
+		}
+	}*/
+
+	// This gradle task will be called by `grails run-app`.
+	bootRun {
+/*
+		dependsOn pathingJar
+		doFirst {
+			// Add the compiled app classed to the classpath of the pathing jar. Probably there is a gradle variable for them?
+			classpath = files("$buildDir/classes/main", "$buildDir/resources/main", "$projectDir/gsp-classes", pathingJar.archivePath)
+		}
+*/
+        systemProperty 'server.port', '8080'
+        systemProperty 'spring.profiles.active', 'mysql,dev'
+        args "--appurl=http://localhost:8080"
+        main = 'com.leatherswan.artisticendeavors.mvc.common.Application'
+	}
+
+	// Do the same for like for bootRun for the run task executable by `gradle run`.
+/*
+	run {
+		dependsOn pathingJar
+		doFirst {
+			classpath = files("$buildDir/classes/main", "$buildDir/resources/main", "$projectDir/gsp-classes", pathingJar.archivePath)
+		}
+	}
+*/
+//}
+
+

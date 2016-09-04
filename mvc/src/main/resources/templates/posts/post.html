@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/highlight/github.css}"/>
+    <script th:src="@{/js/highlight.pack.js}"></script>
+
+    <itemTitle th:text="|#{post.page.itemTitle.prefix(${post.postTitle})}|">[Page Title]</itemTitle>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar('posts')">Navbar</nav>
+
+<!--/*@thymesVar id="post" type="com.leatherswan.artisticendeavors.jpa.model.Post"*/-->
+<!--/*@thymesVar id="postCreated" type="java.util.Date"*/-->
+<!--/*@thymesVar id="PostType" type="com.leatherswan.artisticendeavors.jpa.enums.PostType"*/-->
+
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row post-header-row">
+            <div th:replace="fragments/sponsor :: [id='sponsor']">[sponsor image]</div>
+            <div class="col-lg-12">
+                <h1 th:text="${post.postTitle}" class="post-itemTitle">[post itemTitle]</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container bs-docs-container">
+    <div class="row row-centered" id="post">
+        <div class="bs-docs-section col-lg-9 col-centered">
+            <div id="message-holder">
+                <div th:if="${feedbackMessage}" th:class="'messageblock hidden'"
+                     th:utext="${feedbackMessage}"></div>
+            </div>
+            <div id="post-body" th:utext="${post.postContent}">
+            </div>
+            <div id="post-footer">
+                <div id="post-date" th:text="|Posted ${#dates.format(postCreated, 'MMMM dd, yyyy hh:mm a z')}|">
+                    [post date]
+                </div>
+                <div class="post-tags">
+                    <span class="taglink"  th:each="tag : ${post.tags }"><a th:href="@{|/posts/tag/${#strings.toLowerCase(tag.tagValue)}|}" th:text="${tag.tagValue}" class="big label label-default">[TAG]</a></span>
+                </div>
+                <div class="footer-links">
+                    <div class="source-link" th:if="${post.postType.name() == 'LINK'}">
+                        <a th:href="${post.postLink}" th:text="|Source: ${post.postSource}|" target="_blank">[Post Source]</a>
+                    </div>
+                    <div class="edit-link" th:if="${post.isOwner}">
+                        <a th:href="@{|/posts/update/${post.postId}|}" th:text="#{post.permalink.edit}">[Edit]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav th:replace="fragments/secinfo :: [id='secInfo']">User Info</nav>
+</div>
+<div th:include="fragments/scripts :: [id='scripts']" th:remove="tag">[scripts]</div>
+<div th:include="fragments/alerts :: [id='alerts']" th:remove="tag">Alerts</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $('pre code').each(function (i, block) {
+        hljs.highlightBlock(block);
+    });
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

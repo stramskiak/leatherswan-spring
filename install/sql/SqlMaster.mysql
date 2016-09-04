@@ -1,0 +1,631 @@
+/*
+
+Source Host           : localhost:3306
+Source Database       : dev_leatherswan
+
+Date: 2016-08-12 12:16:22
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+SELECT SCHEMA `dev_leatherswan` ;
+
+-- ----------------------------
+-- Drop Table and View
+-- ----------------------------
+DROP TABLE IF EXISTS `user_product_ids`;
+DROP TABLE IF EXISTS `post_product_ids`;
+DROP TABLE IF EXISTS `post_contact_ids`;
+DROP TABLE IF EXISTS `post_tag_ids`;
+DROP TABLE IF EXISTS `contact_category_ids`;
+DROP TABLE IF EXISTS `contact_genre_ids`;
+DROP TABLE IF EXISTS `contact_hobby_ids`;
+DROP TABLE IF EXISTS `contact_product_ids`;
+DROP TABLE IF EXISTS `product_category_ids`;
+DROP TABLE IF EXISTS `product_genre_ids`;
+DROP TABLE IF EXISTS `site_options`;
+DROP VIEW IF EXISTS `v_contact_hobbies`;
+DROP VIEW IF EXISTS `v_contact_phones`;
+DROP TABLE IF EXISTS `contact_phones`;
+DROP TABLE IF EXISTS `user_profiles`;
+DROP TABLE IF EXISTS `user_authorities`;
+DROP TABLE IF EXISTS `userconnection`;
+DROP TABLE IF EXISTS `hobbies`;
+DROP TABLE IF EXISTS `contact_bio`;
+DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `contacts`;
+DROP TABLE IF EXISTS `posts`;
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `authorities`;
+
+-- ----------------------------
+-- Table structure for authorities
+-- ----------------------------
+CREATE TABLE `authorities` (
+  `authority_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `authority` varchar(50) NOT NULL,
+  `is_locked` tinyint(1) NOT NULL,
+  PRIMARY KEY (`authority_id`),
+  UNIQUE KEY `uc_authorities` (`authority`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of authorities
+-- ----------------------------
+INSERT INTO `authorities` VALUES ('1', 'ROLE_ADMIN','1');
+INSERT INTO `authorities` VALUES ('2', 'ROLE_USER','1');
+INSERT INTO `authorities` VALUES ('3', 'ROLE_ARTIST','1');
+
+-- ----------------------------
+-- Table structure for categories
+-- ----------------------------
+CREATE TABLE `categories` (
+  `category_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `category_value` varchar(50) NOT NULL,
+  PRIMARY KEY (`category_id`),
+  UNIQUE KEY `uc_category1` (`category_id`),
+  UNIQUE KEY `uc_category2` (`category_value`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of categories
+-- ----------------------------
+INSERT INTO `categories` VALUES ('1', 'PAPER');
+INSERT INTO `categories` VALUES ('2', 'GLASS');
+INSERT INTO `categories` VALUES ('3', 'CLAY');
+INSERT INTO `categories` VALUES ('4', 'WOOD');
+INSERT INTO `categories` VALUES ('5', 'METAL');
+INSERT INTO `categories` VALUES ('6', 'WIRE');
+INSERT INTO `categories` VALUES ('7', 'POTTERY');
+INSERT INTO `categories` VALUES ('8', 'ENAMEL');
+INSERT INTO `categories` VALUES ('9', 'JEWELRY');
+INSERT INTO `categories` VALUES ('10', 'PHOTOGRAPHY');
+INSERT INTO `categories` VALUES ('11', 'ILLUSTRATION');
+INSERT INTO `categories` VALUES ('12', 'PATTERN');
+INSERT INTO `categories` VALUES ('13', 'MIXED_MEDIA');
+INSERT INTO `categories` VALUES ('14', 'WEB');
+
+CREATE TABLE `users` (
+`user_id`    bigint(20)    NOT NULL AUTO_INCREMENT,
+`username`    varchar(50)    NOT NULL,
+`email`    varchar(150)    NOT NULL,
+`first_name`    varchar(40)    NOT NULL,
+`last_name`    varchar(40)    NOT NULL,
+`enabled`    tinyint(1)    NOT NULL,
+`account_expired`    tinyint(1)    NOT NULL,
+`account_locked`    tinyint(1)    NOT NULL,
+`credentials_expired`    tinyint(1)    NOT NULL,
+`has_avatar`    tinyint(1)    NOT NULL,
+`user_key`    varchar(25)   NOT NULL DEFAULT '0000000000000000',
+`provider_id`    varchar(25)   NOT NULL DEFAULT 'SITE',
+`password`    varchar(255)   NOT NULL,
+`version`    int(11)    NOT NULL DEFAULT '0',
+PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+INSERT INTO `users` VALUES ('1', 'admin', 'leatherswan@leatherswan.com', 'Admin', 'StramskaWeb', '1', '0', '0', '0', '0', '4L4Hr3skHYYMbjkQ', 'SITE', '$2a$10$B9wQFSrr3bfQeUGqxtTDuut1.4YFcA/WFthZaGe1wtb1wgVW./Oiq', '0');
+INSERT INTO `users` VALUES ('2', 'user', 'user@aol.com', 'User', 'Charlie', '1', '0', '0', '0', '0', 'v7jXapyD6fbRyZvi', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('3', 'stramska', 'leatherswan@leatherswan.com', 'Anita', 'Stramski', '1', '0', '0', '0', '0', 'HuoPByrU0hC87gz8', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('4', 'erwin', 'erwin@aol.com', 'Erwin', 'Lapote', '1', '0', '0', '0', '0', 'kSpaxKbYIL0a5Mma', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('5', 'jeremy', 'jeremy@aol.com', 'Jeremy', 'Sloan', '1', '0', '0', '0', '0', 'xt4e25EoFgjx5CP2', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('6', 'scott', 'scott@aol.com', 'Scott', 'Shoenberg', '1', '0', '0', '0', '0', 'Fx05XbWjPFECJZQP', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('7', 'credmond', 'credmon@uw.edu', 'Conor', 'Redmond', '1', '0', '0', '0', '0', 'v7jXapyD6fbRyZvi', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('8', 'jsmith', 'jsmith@smithbro.com', 'John', 'Smith', '1', '0', '0', '0', '0', 'v7jXapyD6fbRyZvi', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('9', 'pdiddy', 'pcombs@didit.gov', 'Puffy', 'Combs', '1', '0', '0', '0', '0', 'v7jXapyD6fbRyZvi', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+INSERT INTO `users` VALUES ('10', 'fflintstone', 'ffstone@rock.me', 'Fred', 'Flintstone', '1', '0', '0', '0', '0', 'v7jXapyD6fbRyZvi', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');
+
+
+
+-- ----------------------------
+-- Table structure for user_authorities
+-- ----------------------------
+CREATE TABLE `user_authorities` (
+  `user_id` bigint(20) NOT NULL,
+  `authority_id` bigint(20) NOT NULL,
+  UNIQUE KEY `uc_user_authorities` (`user_id`,`authority_id`),
+  KEY `fk_user_authorities_2` (`authority_id`),
+  CONSTRAINT `fk_user_authorities_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `fk_user_authorities_2` FOREIGN KEY (`authority_id`) REFERENCES `authorities` (`authority_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user_authorities
+-- ----------------------------
+INSERT INTO `user_authorities` VALUES ('1', '1');
+INSERT INTO `user_authorities` VALUES ('1', '2');
+INSERT INTO `user_authorities` VALUES ('3', '2');
+INSERT INTO `user_authorities` VALUES ('3', '1');
+INSERT INTO `user_authorities` VALUES ('3', '3');
+INSERT INTO `user_authorities` VALUES ('8', '2');
+
+-- ----------------------------
+-- Table structure for user_profiles
+-- ----------------------------
+CREATE TABLE `user_profiles` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `address2` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user_profiles
+-- ----------------------------
+
+
+
+CREATE TABLE `userconnection` (
+`userId`    varchar(255)    NOT NULL,
+`providerId`    varchar(255)    NOT NULL,
+`providerUserId`    varchar(255)    NOT NULL DEFAULT '',
+`rank`    INT(11)    NOT NULL,
+`displayName`    varchar(255)     DEFAULT NULL,
+`profileUrl`    varchar(512)     DEFAULT NULL,
+`imageUrl`    varchar(512)     DEFAULT NULL,
+`accessToken`    varchar(255)    NOT NULL,
+`secret`    varchar(255)     DEFAULT NULL,
+`refreshToken`    varchar(255)     DEFAULT NULL,
+`expireTime`    bigint(20)     DEFAULT NULL,
+PRIMARY KEY (`userId`,`providerId`,`providerUserId`),
+UNIQUE KEY `UserConnectionRank` (`userId`,`providerId`,`rank`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE UNIQUE INDEX UserConnectionProviderUser ON UserConnection(providerId, providerUserId);
+
+
+
+-- ----------------------------
+-- Table structure for contacts
+-- ----------------------------
+CREATE TABLE `contacts` (
+  `contact_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(40) NOT NULL,
+  `last_name` varchar(40) NOT NULL,
+  `birth_date` date DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `created_by_user` varchar(50) NOT NULL,
+  `creation_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_by_user` varchar(50) NOT NULL,
+  `modification_time` timestamp NULL DEFAULT NULL,
+  `version` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`contact_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contacts
+-- ----------------------------
+INSERT INTO `contacts` VALUES ('1', 'Summer', 'Glass', '1977-09-15', 'nec@enimSuspendisse.ca', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('2', 'Libby', 'Goff', '1964-07-27', 'lectus.ante.dictum@placeratvelit.ca', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('3', 'Shad', 'Mason', '1963-09-28', 'nunc.ac.mattis@metusVivamuseuismod.net', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('4', 'Aidan', 'Watkins', '1970-06-21', 'sit.amet.metus@Inmi.org', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('5', 'Gareth', 'Montgomery', '1979-03-22', 'Cum.sociis@amifringilla.ca', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('6', 'Cruz', 'Rogers', '1975-03-30', 'eget.laoreet.posuere@ornareIn.org', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('7', 'Freya', 'Carson', '1982-07-26', 'facilisis@aodio.org', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('8', 'Raymond', 'Hickman', '1968-02-24', 'Nam.nulla@pedenonummyut.edu', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('9', 'Denise', 'Hull', '1958-10-17', 'euismod.in.dolor@ametultricies.com', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('10', 'Xenos', 'Thompson', '1959-12-10', 'sit.amet.massa@elementumduiquis.ca', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+INSERT INTO `contacts` VALUES ('11', 'Anita', 'Stramski', '1962-03-24', 'anita.stramski@gmail.com', 'admin', '2015-09-10 19:18:38', 'admin', '2015-09-10 19:18:38', '0');
+
+-- ----------------------------
+-- Table structure for contact_phones
+-- ----------------------------
+CREATE TABLE `contact_phones` (
+  `contact_phone_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contact_id` bigint(20) NOT NULL,
+  `phone_type` varchar(20) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `version` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`contact_phone_id`),
+  KEY `fk_contact_phones_contact_id` (`contact_id`),
+  CONSTRAINT `fk_contact_phones_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contact_phones
+-- ----------------------------
+INSERT INTO `contact_phones` VALUES ('1', '1', 'Mobile', '1-113-753-8020', '0');
+INSERT INTO `contact_phones` VALUES ('2', '1', 'Home', '1-996-507-0853', '0');
+INSERT INTO `contact_phones` VALUES ('3', '2', 'Mobile', '1-407-100-1341', '0');
+INSERT INTO `contact_phones` VALUES ('4', '2', 'Home', '1-285-981-2510', '0');
+INSERT INTO `contact_phones` VALUES ('5', '3', 'Mobile', '1-274-311-9291', '0');
+INSERT INTO `contact_phones` VALUES ('6', '3', 'Home', '1-499-112-9185', '0');
+INSERT INTO `contact_phones` VALUES ('7', '4', 'Mobile', '1-234-628-6511', '0');
+INSERT INTO `contact_phones` VALUES ('8', '4', 'Home', '1-560-178-3273', '0');
+INSERT INTO `contact_phones` VALUES ('9', '5', 'Mobile', '1-430-941-9233', '0');
+INSERT INTO `contact_phones` VALUES ('10', '5', 'Home', '1-271-831-8886', '0');
+INSERT INTO `contact_phones` VALUES ('11', '6', 'Mobile', '1-255-105-0103', '0');
+INSERT INTO `contact_phones` VALUES ('12', '6', 'Home', '1-481-652-4155', '0');
+INSERT INTO `contact_phones` VALUES ('13', '7', 'Mobile', '1-917-917-8478', '0');
+INSERT INTO `contact_phones` VALUES ('14', '7', 'Home', '1-766-831-2271', '0');
+INSERT INTO `contact_phones` VALUES ('15', '8', 'Mobile', '1-863-515-3218', '0');
+INSERT INTO `contact_phones` VALUES ('16', '8', 'Home', '1-930-909-9849', '0');
+INSERT INTO `contact_phones` VALUES ('17', '9', 'Mobile', '1-423-399-6903', '0');
+INSERT INTO `contact_phones` VALUES ('18', '9', 'Home', '1-294-840-1996', '0');
+INSERT INTO `contact_phones` VALUES ('19', '10', 'Mobile', '1-661-300-3848', '0');
+INSERT INTO `contact_phones` VALUES ('20', '10', 'Home', '1-972-479-8970', '0');
+INSERT INTO `contact_phones` VALUES ('21', '11', 'Mobile', '1-405-300-0711', '0');
+
+-- ----------------------------
+-- Table structure for hobbies
+-- ----------------------------
+CREATE TABLE `hobbies` (
+  `hobby_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `hobby_title` varchar(20) NOT NULL,
+  PRIMARY KEY (`hobby_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of hobbies
+-- ----------------------------
+INSERT INTO `hobbies` VALUES ('1', 'Jogging');
+INSERT INTO `hobbies` VALUES ('2', 'Movies');
+INSERT INTO `hobbies` VALUES ('3', 'Programming');
+INSERT INTO `hobbies` VALUES ('4', 'Reading');
+INSERT INTO `hobbies` VALUES ('5', 'Swimming');
+
+
+-- ----------------------------
+-- Table structure for contact_hobby_ids
+-- ----------------------------
+CREATE TABLE `contact_hobby_ids` (
+  `contact_hobby_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contact_id` bigint(20) NOT NULL,
+  `hobby_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`contact_hobby_id`),
+  KEY `fk_hobby_contact_id` (`contact_id`),
+  KEY `fk_hobby_hobby_id` (`hobby_id`),
+  CONSTRAINT `fk_hobby_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_hobby_hobby_id` FOREIGN KEY (`hobby_id`) REFERENCES `hobbies` (`hobby_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contact_hobby_ids
+-- ----------------------------
+INSERT INTO `contact_hobby_ids` VALUES ('1', '1', '1');
+INSERT INTO `contact_hobby_ids` VALUES ('2', '1', '2');
+INSERT INTO `contact_hobby_ids` VALUES ('3', '2', '3');
+INSERT INTO `contact_hobby_ids` VALUES ('4', '2', '4');
+INSERT INTO `contact_hobby_ids` VALUES ('5', '3', '5');
+INSERT INTO `contact_hobby_ids` VALUES ('6', '3', '1');
+INSERT INTO `contact_hobby_ids` VALUES ('7', '4', '2');
+INSERT INTO `contact_hobby_ids` VALUES ('8', '4', '3');
+INSERT INTO `contact_hobby_ids` VALUES ('9', '5', '4');
+INSERT INTO `contact_hobby_ids` VALUES ('10', '5', '5');
+INSERT INTO `contact_hobby_ids` VALUES ('11', '6', '1');
+INSERT INTO `contact_hobby_ids` VALUES ('12', '6', '2');
+INSERT INTO `contact_hobby_ids` VALUES ('13', '7', '3');
+INSERT INTO `contact_hobby_ids` VALUES ('14', '7', '4');
+INSERT INTO `contact_hobby_ids` VALUES ('15', '8', '5');
+INSERT INTO `contact_hobby_ids` VALUES ('16', '8', '1');
+INSERT INTO `contact_hobby_ids` VALUES ('17', '9', '2');
+INSERT INTO `contact_hobby_ids` VALUES ('18', '9', '3');
+INSERT INTO `contact_hobby_ids` VALUES ('19', '10', '4');
+INSERT INTO `contact_hobby_ids` VALUES ('20', '10', '5');
+INSERT INTO `contact_hobby_ids` VALUES ('21', '2', '5');
+INSERT INTO `contact_hobby_ids` VALUES ('22', '11', '4');
+INSERT INTO `contact_hobby_ids` VALUES ('23', '11', '5');
+
+-- ----------------------------
+-- View structure for v_contact_hobbies
+-- ----------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_contact_hobbies` AS select `contacts`.`contact_id` AS `contact_id`,`contacts`.`first_name` AS `first_name`,`contacts`.`last_name` AS `last_name`,`contacts`.`birth_date` AS `birth_date`,`contacts`.`email` AS `email`,`hobbies`.`hobby_id` AS `hobby_id`,`hobbies`.`hobby_title` AS `hobby_title` from ((`contacts` join `contact_hobby_ids` on((`contacts`.`contact_id` = `contact_hobby_ids`.`contact_id`))) join `hobbies` on((`contact_hobby_ids`.`hobby_id` = `hobbies`.`hobby_id`))) order by `contacts`.`contact_id` ;
+
+-- ----------------------------
+-- View structure for v_contact_phones
+-- ----------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_contact_phones` AS select `contacts`.`contact_id` AS `contact_id`,`contacts`.`first_name` AS `first_name`,`contacts`.`last_name` AS `last_name`,`contacts`.`birth_date` AS `birth_date`,`contacts`.`email` AS `email`,`contact_phones`.`phone_type` AS `phone_type`,`contact_phones`.`phone_number` AS `phone_number`,`contact_phones`.`contact_phone_id` AS `contact_phone_id` from (`contacts` join `contact_phones` on((`contacts`.`contact_id` = `contact_phones`.`contact_id`))) ;
+
+
+-- ----------------------------
+-- Table structure for contact_bio
+-- ----------------------------
+CREATE TABLE `contact_bio` (
+`contact_bio_id`    bigint(20)    NOT NULL AUTO_INCREMENT,
+`contact_id`    bigint(20)    NOT NULL,
+`bio`    TEXT,
+`image_url`    varchar(200),
+`created_by_user`    varchar(50)    NOT NULL,
+`creation_time`       timestamp    NOT NULL, -- DEFAULT '0000-00-00 00:00:00',
+`modified_by_user`    varchar(50)    NOT NULL,
+`modification_time`     timestamp    NOT NULL,
+`version`    int(11)    NOT NULL DEFAULT 0,
+PRIMARY KEY (`contact_bio_id`),
+KEY `fk_contact_bio_contact_id` (`contact_id`),
+CONSTRAINT `fk_contact_bio_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+INSERT INTO `contact_bio` VALUES ('1', '11', 'Always curious and extending my reach, I am a diverse artistic talent!','stramski.jpg', 'admin', '2015-09-10 19:18:38.335', 'admin', '2015-09-10 19:18:38.335', 0);
+
+-- ----------------------------
+-- Table structure for contact_category_ids
+-- ----------------------------
+CREATE TABLE `contact_category_ids` (
+  `contact_category_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contact_id` bigint(20) NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`contact_category_id`),
+  KEY `fk_contact_category_contact_id` (`contact_id`),
+  KEY `fk_contact_category_category_id` (`category_id`),
+  CONSTRAINT `fk_contact_category_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`),
+  CONSTRAINT `fk_contact_category_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contact_category_ids
+-- ----------------------------
+INSERT INTO `contact_category_ids` VALUES ('1', '11', '1');
+INSERT INTO `contact_category_ids` VALUES ('2', '11', '2');
+INSERT INTO `contact_category_ids` VALUES ('3', '11', '3');
+INSERT INTO `contact_category_ids` VALUES ('4', '11', '4');
+INSERT INTO `contact_category_ids` VALUES ('5', '11', '5');
+INSERT INTO `contact_category_ids` VALUES ('6', '11', '6');
+INSERT INTO `contact_category_ids` VALUES ('7', '11', '7');
+INSERT INTO `contact_category_ids` VALUES ('8', '11', '8');
+INSERT INTO `contact_category_ids` VALUES ('9', '11', '9');
+INSERT INTO `contact_category_ids` VALUES ('10', '11', '10');
+INSERT INTO `contact_category_ids` VALUES ('11', '11', '11');
+
+
+-- ----------------------------
+-- Table structure for site_options
+-- ----------------------------
+CREATE TABLE `site_options`
+(
+  `option_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `option_name` VARCHAR(50) NOT NULL,
+  `option_value` TEXT,
+  PRIMARY KEY (`option_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+CREATE UNIQUE INDEX SiteOptionsOptionId ON site_options (option_id);
+
+INSERT INTO `site_options` VALUES ('1', 'siteName', 'My Site');
+INSERT INTO `site_options` VALUES ('2', 'siteDescription', 'My Site Description');
+INSERT INTO `site_options` VALUES ('3', 'addGoogleAnalytics', 'false');
+INSERT INTO `site_options` VALUES ('4', 'googleAnalyticsTrackingId', 'UA-XXXXXX-7');
+INSERT INTO `site_options` VALUES ('5', 'integerProperty', '1');
+
+-- ----------------------------
+-- Table structure for posts
+--   posts from users for review of contacts and products
+-- ----------------------------
+CREATE TABLE `posts` (
+`post_id`    bigint(20)    NOT NULL AUTO_INCREMENT,
+`user_id`    bigint(20)    NOT NULL,
+`contact_id`    bigint(20)    DEFAULT '0',
+`product_id`    bigint(20)    DEFAULT '0',
+`post_title`    varchar(200)    NOT NULL,
+`post_name`    varchar(200)    NOT NULL,
+`post_link`    varchar(255)     DEFAULT NULL,
+`post_date`     timestamp    NOT NULL DEFAULT '0000-00-00 00:00:00',
+`post_modified`     timestamp    NOT NULL DEFAULT '0000-00-00 00:00:00',
+`post_type`    varchar(20)    NOT NULL DEFAULT 'LINK',
+`display_type`    varchar(20)    NOT NULL DEFAULT 'LINK',
+`is_published`    tinyint(1)    NOT NULL DEFAULT '0',
+`is_contact_review`    tinyint(1)    NOT NULL DEFAULT '0',
+`is_product_review`    tinyint(1)    NOT NULL DEFAULT '0',
+`post_content`    text    NOT NULL,
+`post_source`    varchar(50)    NOT NULL DEFAULT 'NA',
+`post_image`    varchar(200)     DEFAULT NULL,
+`click_count`    INT(11)    NOT NULL DEFAULT '0',
+`likes_count`    INT(11)    NOT NULL DEFAULT '0',
+`value_rating`    INT(11)    NOT NULL DEFAULT '0',
+`version`    INT(11)    NOT NULL DEFAULT '0',
+PRIMARY KEY (`post_id`),
+UNIQUE KEY `posts_post_id_uindex` (`post_id`),
+KEY `posts_users_user_id_fk` (`user_id`),
+CONSTRAINT `posts_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `posts` VALUES ('1', '7', '11', '10', ' Sleeping Baby ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Making babies is great fun!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('2', '1', '11', '10', ' Angel ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('3', '2', '11', '10', ' Great Jewelry ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Cant wait to see what comes next!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('4', '2', '11', '10', ' Fabulous ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Fun and playful.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('5', '2', '11', '10', ' Very Happy ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'A riot of color and form.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('6', '9', '11', '10', ' Fun Logo ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Such a fun logo, it really has a history!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('7', '5', '11', '10', ' Excellent instructions ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Complex pattern with step-by-step construction help.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('8', '1', '11', '10', ' Angel in flight ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Love my angel. A flight of fancy for the young at heart.', 'NA', 'NA', '0', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for tags
+-- ----------------------------
+
+CREATE TABLE `tags` (
+  `tag_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tag_value` varchar(50) NOT NULL,
+  PRIMARY KEY (`tag_id`),
+  UNIQUE KEY `tags_tag_id_uindex` (`tag_id`),
+  UNIQUE KEY `tags_tag_value_uindex` (`tag_value`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+INSERT INTO `tags` VALUES ('1', 'easy');
+INSERT INTO `tags` VALUES ('2', 'intermediate');
+INSERT INTO `tags` VALUES ('3', 'hard');
+INSERT INTO `tags` VALUES ('4', 'heilman');
+INSERT INTO `tags` VALUES ('5', 'stramski');
+INSERT INTO `tags` VALUES ('6', 'doit');
+INSERT INTO `tags` VALUES ('7', 'maker');
+
+-- ----------------------------
+-- Table structure for post_tag_ids
+-- ----------------------------
+
+CREATE TABLE `post_tag_ids` (
+  `post_tag_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL,
+  `tag_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`post_tag_id`),
+  KEY `fk_posts_tags_post_id` (`post_id`),
+  KEY `fk_posts_tags_tag_id` (`tag_id`),
+  CONSTRAINT `fk_posts_tags_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`),
+  CONSTRAINT `fk_posts_tags_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`tag_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+INSERT INTO `post_tag_ids` VALUES ('1', '1', '1');
+INSERT INTO `post_tag_ids` VALUES ('2', '1', '2');
+INSERT INTO `post_tag_ids` VALUES ('3', '1', '3');
+INSERT INTO `post_tag_ids` VALUES ('4', '7', '4');
+INSERT INTO `post_tag_ids` VALUES ('5', '7', '5');
+INSERT INTO `post_tag_ids` VALUES ('6', '4', '6');
+INSERT INTO `post_tag_ids` VALUES ('7', '4', '7');
+
+-- ----------------------------
+-- Table structure for products
+-- ----------------------------
+CREATE TABLE `products` (
+`product_id`    bigint(20)    NOT NULL AUTO_INCREMENT,
+`product_title`    varchar(200)    NOT NULL,
+`product_name`    varchar(200)    NOT NULL,
+`product_link`    varchar(255)     DEFAULT NULL,
+`product_date`     timestamp    NOT NULL DEFAULT '0000-00-00 00:00:00',
+`product_modified`     timestamp    NOT NULL DEFAULT '0000-00-00 00:00:00',
+`product_type`    varchar(20)    NOT NULL DEFAULT 'LINK',
+`display_type`    varchar(20)    NOT NULL DEFAULT 'LINK',
+`is_published`    tinyint(1)    NOT NULL DEFAULT '0',
+`is_sold`    tinyint(1)    NOT NULL DEFAULT '0',
+`product_content`    text    NOT NULL,
+`product_source`    varchar(50)    NOT NULL DEFAULT 'NA',
+`product_image`    varchar(200)     DEFAULT NULL,
+`click_count`    INT(11)    NOT NULL DEFAULT '0',
+`likes_count`    INT(11)    NOT NULL DEFAULT '0',
+`value_rating`    INT(11)    NOT NULL DEFAULT '0',
+`created_by_user`    varchar(50)    NOT NULL,
+`modified_by_user`    varchar(50)    NOT NULL,
+`version`    INT(11)    NOT NULL DEFAULT '0',
+PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `products` VALUES ('1', '3D Paper Angel', 'a01b01', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'Original papercraft design for your enjoyment.', 'NA', 'angel01blue01.gif', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('2', 'Glass Bead Jewelry', 'gbCollection', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '4', 'NA', '0', '0', 'Lampworked glass beads in handcrafted jewelry.', 'NA', 'GlassBeadCollection.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('3', 'Angel 01 Variations', 'a01KitVar', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'A range of color options to suit your special occation. ', 'NA', 'AngelKitVariation.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('4', 'Angel 01 Kit', 'a01b02', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'This angel kit is available now!', 'NA', 'angel01blue02.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('5', 'Angel 01 Kit Parts', 'a01parts', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'An example of the paper cutouts included in every Angel 01 Kit', 'NA', 'angel01parts.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('6', 'Angel 01 Kit Construction Video', 'a01video', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'follow the link www.leatherswan.com/video/video.mp3 to see construction', 'NA', 'angel01video.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('7', 'Sleeping Baby', 'b01', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '3', 'NA', '0', '0', 'A special baby reminding me to relax!', 'NA', 'Babies01.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('8', 'MakeNbabies for the March of Dimes', 'bMoD', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '3', 'NA', '0', '0', 'A grass roots effort to spread the word of healthy babies thru crafty connections.', 'NA', 'make_n_babies.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('9', 'Leather Swan Original', 'LSLogo', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '4', 'NA', '0', '0', 'A suprise find in an antique store', 'NA', 'My Leather Swan.gif', '0', '0', '0', 'admin', 'admin', '0');
+
+-- ----------------------------
+-- Table structure for product_category_ids
+-- ----------------------------
+CREATE TABLE `product_category_ids` (
+  `product_category_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) NOT NULL,
+  `category_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`product_category_id`),
+  KEY `fk_product_category_product_id` (`product_id`),
+  KEY `fk_product_category_category_id` (`category_id`),
+  CONSTRAINT `fk_product_category_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  CONSTRAINT `fk_product_category_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of product_category_ids
+-- ----------------------------
+INSERT INTO `product_category_ids` VALUES ('1', '1', '1');
+INSERT INTO `product_category_ids` VALUES ('2', '2', '9');
+INSERT INTO `product_category_ids` VALUES ('3', '2', '2');
+INSERT INTO `product_category_ids` VALUES ('4', '3', '1');
+INSERT INTO `product_category_ids` VALUES ('5', '4', '1');
+INSERT INTO `product_category_ids` VALUES ('6', '5', '1');
+INSERT INTO `product_category_ids` VALUES ('7', '6', '12');
+INSERT INTO `product_category_ids` VALUES ('8', '7', '3');
+INSERT INTO `product_category_ids` VALUES ('9', '8', '3');
+INSERT INTO `product_category_ids` VALUES ('10', '9', '14');
+
+
+-- ----------------------------
+-- Table structure for contact_product_ids
+--   associates contacts with products
+-- ----------------------------
+CREATE TABLE `contact_product_ids` (
+  `contact_product_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contact_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`contact_product_id`),
+         KEY `fk_contact_product_contact_id` (`contact_id`),
+         KEY `fk_contact_product_product_id` (`product_id`),
+  CONSTRAINT `fk_contact_product_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`),
+  CONSTRAINT `fk_contact_product_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contact_product
+-- ----------------------------
+INSERT INTO `contact_product_ids` VALUES ('1', '11', '1');
+INSERT INTO `contact_product_ids` VALUES ('2', '11', '2');
+INSERT INTO `contact_product_ids` VALUES ('3', '11', '3');
+INSERT INTO `contact_product_ids` VALUES ('4', '11', '4');
+INSERT INTO `contact_product_ids` VALUES ('5', '11', '5');
+INSERT INTO `contact_product_ids` VALUES ('6', '11', '6');
+INSERT INTO `contact_product_ids` VALUES ('7', '11', '7');
+INSERT INTO `contact_product_ids` VALUES ('8', '11', '8');
+INSERT INTO `contact_product_ids` VALUES ('9', '11', '9');
+
+-- ----------------------------
+-- Table structure for user_product_ids
+--   for visitors to save favorite products
+-- ----------------------------
+CREATE TABLE `user_product_ids` (
+  `user_product_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_product_id`),
+  KEY `fk_user_product_user_id` (`user_id`),
+  KEY `fk_user_product_product_id` (`product_id`),
+  CONSTRAINT `fk_user_product_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `fk_user_product_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user_product
+-- ----------------------------
+INSERT INTO `user_product_ids` VALUES ('1', '9', '3');
+INSERT INTO `user_product_ids` VALUES ('2', '10', '1');
+INSERT INTO `user_product_ids` VALUES ('3', '10', '4');
+
+-- ----------------------------
+-- Table structure for post_product_ids
+-- ----------------------------
+CREATE TABLE `post_product_ids` (
+  `post_product_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`post_product_id`),
+  KEY `fk_post_product_post_id` (`post_id`),
+  KEY `fk_post_product_product_id` (`product_id`),
+  CONSTRAINT `fk_post_product_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`),
+  CONSTRAINT `fk_post_product_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+INSERT INTO `post_product_ids` VALUES ('1', '1', '7');
+INSERT INTO `post_product_ids` VALUES ('2', '2', '1');
+INSERT INTO `post_product_ids` VALUES ('3', '3', '2');
+INSERT INTO `post_product_ids` VALUES ('4', '4', '2');
+INSERT INTO `post_product_ids` VALUES ('5', '5', '2');
+INSERT INTO `post_product_ids` VALUES ('6', '6', '9');
+INSERT INTO `post_product_ids` VALUES ('7', '8', '1');
+
+-- ----------------------------
+-- Table structure for post_contact_ids
+-- ----------------------------
+CREATE TABLE `post_contact_ids` (
+  `post_contact_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL,
+  `contact_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`post_contact_id`),
+  KEY `fk_post_contact_post_id` (`post_id`),
+  KEY `fk_post_contacts_id` (`contact_id`),
+  CONSTRAINT `fk_post_contact_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`),
+  CONSTRAINT `fk_post_contacts_id` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`contact_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+INSERT INTO `post_contact_ids` VALUES ('1', '7', '11');
+

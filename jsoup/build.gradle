@@ -1,0 +1,35 @@
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.leatherswan.artisticendeavors.jsoup.JsoupLauncher'
+	}
+}
+
+sourceSets {
+	main {
+		java.srcDirs = ['src/main/java', 'src/main/resources']
+		resources.srcDir('src/main/resources')
+	}
+	test {
+		java.srcDir('src/test/java')
+	}
+}
+
+configurations {
+	compile.exclude module: 'org.slf4j'
+}
+
+springBoot {
+	mainClass = 'com.leatherswan.artisticendeavors.jsoup.JsoupLauncher'
+}
+
+dependencies {
+	compile project(':jpa')
+	compile 'org.jsoup:jsoup:1.9.2'
+}
+
+
+bootRun {
+	addResources = false
+	systemProperty 'spring.profiles.active', 'mysql,dev'
+	main = 'com.leatherswan.artisticendeavors.jsoup.JsoupLauncher'
+}
