@@ -4,6 +4,7 @@ import com.github.dandelion.core.web.DandelionFilter;
 import com.leatherswan.artisticendeavors.jpa.common.ISiteOption;
 import com.leatherswan.artisticendeavors.jpa.common.SiteOptions;
 import com.leatherswan.artisticendeavors.jpa.dto.SiteOptionMapDTO;
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jpa.service.SiteService;
 import com.leatherswan.artisticendeavors.jpa.service.UserService;
 import com.leatherswan.artisticendeavors.mvc.AbstractContext;
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -39,6 +41,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class AdminControllerTests extends AbstractContext {
 
     private AdminController adminController;

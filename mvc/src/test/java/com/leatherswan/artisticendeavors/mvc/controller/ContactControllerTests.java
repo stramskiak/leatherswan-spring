@@ -1,6 +1,7 @@
 package com.leatherswan.artisticendeavors.mvc.controller;
 
 import com.leatherswan.artisticendeavors.jpa.dto.ContactDTO;
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jpa.exceptions.ContactNotFoundException;
 import com.leatherswan.artisticendeavors.jpa.model.Contact;
 import com.leatherswan.artisticendeavors.jpa.utils.ContactTestUtils;
@@ -23,6 +24,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -56,6 +58,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class ContactControllerTests extends AbstractContext {
 
     private ContactService mockService;

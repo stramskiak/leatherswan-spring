@@ -1,6 +1,7 @@
 package com.leatherswan.artisticendeavors.jsoup;
 
 import com.leatherswan.artisticendeavors.jpa.JpaLauncher;
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
@@ -12,7 +13,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(
         classes= { JsoupLauncher.class, JpaLauncher.class, JsoupTestConfig.class },
         loader=AnnotationConfigContextLoader.class)
-@ActiveProfiles("h2")
+@ActiveProfiles({ DataConfigProfile.H2 })
 public class JsoupContext {
 
     @Test

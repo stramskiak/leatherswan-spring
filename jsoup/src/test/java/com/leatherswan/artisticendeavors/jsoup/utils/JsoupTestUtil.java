@@ -1,11 +1,12 @@
 package com.leatherswan.artisticendeavors.jsoup.utils;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
+import org.springframework.test.context.ActiveProfiles;
+
 import java.io.File;
 import java.net.URISyntaxException;
 
-/**
- * Created by daveburke on 5/21/16.
- */
+@ActiveProfiles(DataConfigProfile.H2)
 public class JsoupTestUtil {
 
     public static File getFile(String resourceName) {

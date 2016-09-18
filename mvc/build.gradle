@@ -1,6 +1,5 @@
-import org.gradle.internal.os.OperatingSystem
 
-war { baseName = 'leatherswan' }
+war { baseName = 'ROOT' }
 
 sourceSets {
 	main {
@@ -74,9 +73,11 @@ dependencies {
 			classpath = files("$buildDir/classes/main", "$buildDir/resources/main", "$projectDir/gsp-classes", pathingJar.archivePath)
 		}
 */
-        systemProperty 'server.port', '8080'
-        systemProperty 'spring.profiles.active', 'mysql,dev'
-        args "--appurl=http://localhost:8080"
+//		systemProperties System.properties
+
+		systemProperty 'server.port', '8080'
+        systemProperty 'spring.profiles.active', 'mylocalsql'
+        args("--appurl=http://localhost:8080")
         main = 'com.leatherswan.artisticendeavors.mvc.common.Application'
 	}
 

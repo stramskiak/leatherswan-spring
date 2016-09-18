@@ -15,6 +15,7 @@
  */
 package com.leatherswan.artisticendeavors.mvc.security;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import org.springframework.context.ApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -32,6 +33,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
@@ -53,6 +55,7 @@ import java.util.List;
  *
  * @author Rob Winch
  */
+@ActiveProfiles(DataConfigProfile.H2)
 public final class SecurityRequestPostProcessors {
 
     public static CsrfRequestPostProcessor csrf() {

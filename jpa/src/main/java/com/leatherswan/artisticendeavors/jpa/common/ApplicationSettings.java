@@ -4,8 +4,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/*
+For development: C:/Users/Anita/web/leatherswan/external.leatherswan.properties
+For Production: /home/stramska/web/leatherswan/external.leatherswan.properties
+*/
 @Component
-@PropertySource("file:C:/Users/Anita/web/leatherswan/external.leatherswan.properties")
+@PropertySource("file:/home/stramska/web/leatherswan/external.leatherswan.properties")
 @ConfigurationProperties(prefix = "external")
 public class ApplicationSettings {
 

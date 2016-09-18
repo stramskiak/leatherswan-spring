@@ -32,6 +32,7 @@ dependencies {
 
 bootRun {
 	addResources = false
-	systemProperty 'spring.profiles.active', 'mysql,dev'
+	systemProperty 'spring.profiles.active', 'mylocalsql'
+//	systemProperty "spring.profiles.active", "mylocalsql"
 	main = 'com.leatherswan.artisticendeavors.mail.MailLauncher'
 }

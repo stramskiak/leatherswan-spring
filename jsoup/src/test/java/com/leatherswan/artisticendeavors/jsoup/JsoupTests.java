@@ -1,5 +1,6 @@
 package com.leatherswan.artisticendeavors.jsoup;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jsoup.base.JsoupHtmlParser;
 import com.leatherswan.artisticendeavors.jsoup.base.JsoupImage;
 import com.leatherswan.artisticendeavors.jsoup.base.JsoupLink;
@@ -13,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
@@ -25,6 +27,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class JsoupTests extends JsoupContext {
 
     private Document doc;

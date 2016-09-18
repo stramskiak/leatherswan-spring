@@ -1,6 +1,7 @@
 package com.leatherswan.artisticendeavors.mail;
 
 import com.leatherswan.artisticendeavors.jpa.JpaLauncher;
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
@@ -11,7 +12,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MailLauncher.class, JpaLauncher.class},  loader=AnnotationConfigContextLoader.class)
-@ActiveProfiles("h2")
+@ActiveProfiles({ DataConfigProfile.H2 })
 @TestPropertySource("classpath:/test.properties")
 public class MailContext {
 

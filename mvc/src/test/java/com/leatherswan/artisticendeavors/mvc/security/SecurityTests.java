@@ -1,5 +1,6 @@
 package com.leatherswan.artisticendeavors.mvc.security;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jpa.model.CurrentUser;
 import com.leatherswan.artisticendeavors.mvc.AbstractContext;
 import com.leatherswan.artisticendeavors.mvc.controller.UserController;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -28,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Rob Winch
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class SecurityTests extends AbstractContext {
 
 	@Rule

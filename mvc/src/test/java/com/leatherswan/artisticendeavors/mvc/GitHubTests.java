@@ -3,6 +3,7 @@ package com.leatherswan.artisticendeavors.mvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.leatherswan.artisticendeavors.jpa.dto.GitHubDTO;
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class GitHubTests extends AbstractContext {
 
     @Autowired

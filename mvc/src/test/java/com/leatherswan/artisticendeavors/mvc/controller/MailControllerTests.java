@@ -1,5 +1,6 @@
 package com.leatherswan.artisticendeavors.mvc.controller;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.mvc.components.WebUI;
 import com.leatherswan.artisticendeavors.mail.service.MailService;
 import com.leatherswan.artisticendeavors.mvc.AbstractContext;
@@ -7,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -20,6 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class MailControllerTests extends AbstractContext {
 
     MockMvc mockMvc;

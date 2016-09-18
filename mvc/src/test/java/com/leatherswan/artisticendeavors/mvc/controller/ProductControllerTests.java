@@ -1,5 +1,6 @@
 package com.leatherswan.artisticendeavors.mvc.controller;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jpa.exceptions.GeoLocationException;
 import com.leatherswan.artisticendeavors.jpa.model.Product;
 import com.leatherswan.artisticendeavors.jpa.service.ProductService;
@@ -17,6 +18,7 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -35,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class ProductControllerTests extends AbstractContext {
 
 	private static final String PRODUCT_ID = "LOMAX7";
@@ -48,7 +51,7 @@ public class ProductControllerTests extends AbstractContext {
 	private List<Product> allProducts;
 	private Product product;
 
-//	@Autowired
+	@Autowired
 	private ProductService productService;
 
 	@Before

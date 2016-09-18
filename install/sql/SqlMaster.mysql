@@ -102,7 +102,7 @@ CREATE TABLE `users` (
 `password`    varchar(255)   NOT NULL,
 `version`    int(11)    NOT NULL DEFAULT '0',
 PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 INSERT INTO `users` VALUES ('1', 'admin', 'leatherswan@leatherswan.com', 'Admin', 'StramskaWeb', '1', '0', '0', '0', '0', '4L4Hr3skHYYMbjkQ', 'SITE', '$2a$10$B9wQFSrr3bfQeUGqxtTDuut1.4YFcA/WFthZaGe1wtb1wgVW./Oiq', '0');
 INSERT INTO `users` VALUES ('2', 'user', 'user@aol.com', 'User', 'Charlie', '1', '0', '0', '0', '0', 'v7jXapyD6fbRyZvi', 'SITE', '$2a$10$F2a2W8RtbD99xXd9xtwjbuI4zjSYe04kS.s0FyvQcAIDJfh/6jjLW', '0');

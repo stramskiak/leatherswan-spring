@@ -46,22 +46,43 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Order(2)
 	@Configuration
-	@Profile(DataConfigProfile.MYSQL)
-	protected static class MySqlWebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+	@Profile(DataConfigProfile.MYREMOTESQL)
+	protected static class MyRemoteSqlWebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
 		@Autowired
-		private DataSource dataSource;
+		private DataSource remoteDataSource;
 
 		@Override
 		public void init(AuthenticationManagerBuilder auth) throws Exception {
 			JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
-			userDetailsService.setDataSource(dataSource);
+			userDetailsService.setDataSource(remoteDataSource);
 			PasswordEncoder encoder = new BCryptPasswordEncoder();
 
 			auth.userDetailsService(userDetailsService).passwordEncoder(encoder).and().jdbcAuthentication()
-					.dataSource(dataSource);
+					.dataSource(remoteDataSource);
 		}
 	}
+
+/*
+	@Order(3)
+	@Configuration
+	@Profile(DataConfigProfile.MYLOCALSQL)
+	protected static class MyLocalSqlWebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+
+		@Autowired
+		private DataSource localDataSource;
+
+		@Override
+		public void init(AuthenticationManagerBuilder auth) throws Exception {
+			JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
+			userDetailsService.setDataSource(localDataSource);
+			PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+			auth.userDetailsService(userDetailsService).passwordEncoder(encoder).and().jdbcAuthentication()
+					.dataSource(localDataSource);
+		}
+	}
+*/
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

@@ -1,16 +1,16 @@
 package com.leatherswan.artisticendeavors.jsoup.dto;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jsoup.annotations.*;
 import com.leatherswan.artisticendeavors.jsoup.base.JsoupTwitter;
 import com.leatherswan.artisticendeavors.jsoup.base.JsoupImage;
 import com.leatherswan.artisticendeavors.jsoup.base.JsoupLink;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-/**
- * Created by daveburke on 5/19/16.
- */
 @SuppressWarnings("WeakerAccess")
+@ActiveProfiles(DataConfigProfile.H2)
 public class TestDTO {
 
     @Selector(".myclass")

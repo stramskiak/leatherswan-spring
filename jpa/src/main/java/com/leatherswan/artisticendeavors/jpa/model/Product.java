@@ -263,6 +263,7 @@ public class Product implements Serializable {
     }
 
     @Column(name = "product_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     public PostType getProductType() {
         return productType;
     }
@@ -271,6 +272,7 @@ public class Product implements Serializable {
     }
 
     @Column(name = "display_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     public PostDisplayType getDisplayType() {
         return displayType;
     }

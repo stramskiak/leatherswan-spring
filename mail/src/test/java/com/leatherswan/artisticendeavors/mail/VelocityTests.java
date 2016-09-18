@@ -1,5 +1,6 @@
 package com.leatherswan.artisticendeavors.mail;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jpa.exceptions.PostNotFoundException;
 import com.leatherswan.artisticendeavors.jpa.model.Post;
 import com.leatherswan.artisticendeavors.jpa.service.PostService;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
@@ -22,6 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class VelocityTests extends MailContext {
 
     @Autowired

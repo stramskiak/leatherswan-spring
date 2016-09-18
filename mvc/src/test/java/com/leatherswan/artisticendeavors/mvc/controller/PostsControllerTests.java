@@ -1,5 +1,6 @@
 package com.leatherswan.artisticendeavors.mvc.controller;
 
+import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 import com.leatherswan.artisticendeavors.jpa.enums.PostType;
 import com.leatherswan.artisticendeavors.jpa.exceptions.PostNotFoundException;
 import com.leatherswan.artisticendeavors.jpa.model.Post;
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -38,6 +40,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
  * Modified by stramskiak
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(DataConfigProfile.H2)
 public class PostsControllerTests extends AbstractContext {
 
     private PostsController mockPostsController;

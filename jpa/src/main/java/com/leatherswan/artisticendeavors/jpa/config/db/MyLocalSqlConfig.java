@@ -12,10 +12,12 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 
 import javax.sql.DataSource;
 
+//import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+
 @Configuration
-@PropertySource("classpath:/META-INF/spring/mysql.properties")
-@Profile(DataConfigProfile.MYSQL)
-public class MySqlConfig extends JpaCommonConfig {
+@PropertySource("classpath:/META-INF/spring/mylocalsql.properties")
+@Profile(DataConfigProfile.MYLOCALSQL)
+public class MyLocalSqlConfig extends JpaCommonConfig {
 
     @Override
     @Bean
