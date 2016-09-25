@@ -15,6 +15,8 @@ public class SiteOptionDTO {
     @Length(max = SiteOption.MAX_LENGTH_PROPERTYNAME)
     private String name;
 
+    @NotEmpty
+    @Length(max = SiteOption.MAX_LENGTH_PROPERTYVALUE)
     private String value;
 
     public SiteOptionDTO(String name, String value) {

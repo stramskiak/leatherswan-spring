@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-@Service
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
 	Category findByCategoryValueIgnoreCase(String categoryValue);
 
 	Category findByCategoryId(Long categoryId);
 
+/*
 	@Query("select distinct c from Category c left join fetch " +
 			"c.products p where p.id = ?1")
 	public Set<Category> findByCategory(Long productId);
+*/
 
 }

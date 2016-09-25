@@ -54,7 +54,8 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
     @Query("select p from Product p ")
     List<Product> findAllProducts();
 
-    @Query("select distinct p from Product p left join p.categories c")
+//    @Query("select distinct p from Product p left join p.categories c")
+    @Query("select distinct p from Product p")
     public List<Product> findByLocationNear(Point location, Distance distance);
 
 //    void updateProductCategory(String productId, List<String> categories);
@@ -67,13 +68,17 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 //    public List<Product> findByNameOrCategory(String searchTerm);
 
 //    @Query("cat:*?0* AND doctype:product")
+/*
     @Query("select distinct p from Product p left join fetch " +
         "p.categories c where c.categoryValue = ?1")
     public List<Product> findByCategory(String categoryValue);
+*/
 
+/*
     @Query("select distinct p from Product p left join fetch " +
             "p.contacts c where c.contactId = ?1")
     public List<Product> findByContactId(Long contactId);
+*/
 
 //    @Query("select distinct p from Product p where p.is_sold = false")
 //    public List<Product> findAllIsSoldFalse();

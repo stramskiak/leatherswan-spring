@@ -87,7 +87,7 @@ public class ProductUtils {
             case LINK_FEATURE:
                 content = StringUtils.appendIfMissing(content, feature);
                 break;
-            case LEATHERSWAN_POST:
+            case LEATHERSWAN_PRODUCT:
                 content = StringUtils.appendIfMissing(content, feature);
                 String leatherSwanHtml = "<div class=\"leatherswan-tag\">" +
                         "<a href=\"http://leatherswan.com\" target=\"_blank\">\n" +

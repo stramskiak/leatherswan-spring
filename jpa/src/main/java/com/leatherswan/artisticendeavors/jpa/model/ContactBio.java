@@ -23,6 +23,7 @@ import static javax.persistence.AccessType.PROPERTY;
 public class ContactBio implements Serializable {
     private static final long serialVersionUID = 447728202717826028L;
 
+    public static final int MAX_LENGTH_BIO = 2048;
     public static final int MAX_LENGTH_EMAIL_ADDRESS = 100;
     public static final int MAX_LENGTH_FIRST_NAME = 40;
     public static final int MAX_LENGTH_LAST_NAME = 40;
@@ -39,7 +40,7 @@ public class ContactBio implements Serializable {
 //    @Column(name="contact_id")
 //    private Long contactId;
 
-    @Column(name = "bio", columnDefinition = "TEXT")
+    @Column(name = "bio")
     private String bio;
 	
     @Column(name = "image_url")

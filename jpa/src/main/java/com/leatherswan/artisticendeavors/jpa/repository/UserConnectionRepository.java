@@ -19,7 +19,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.repository.Repository;
 
 import com.leatherswan.artisticendeavors.jpa.model.UserConnection;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface UserConnectionRepository extends Repository<UserConnection, String> {
 
     UserConnection findByUserId(String userId) throws DataAccessException;

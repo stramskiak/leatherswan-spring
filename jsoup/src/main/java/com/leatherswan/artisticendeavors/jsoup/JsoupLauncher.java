@@ -12,8 +12,8 @@ public class JsoupLauncher {
 	public static void main(String[] args) {
 
 		ApplicationContext ctx = new
-				AnnotationConfigApplicationContext("com.leatherswan.artisticendeavors.jsoup",
-																										"com.leatherswan.artisticendeavors.jpa");
+				AnnotationConfigApplicationContext(
+						"com.leatherswan.artisticendeavors.jsoup", "com.leatherswan.artisticendeavors.jpa");
 
 		JsoupUI ui = ctx.getBean(JsoupUI.class);
 		ui.init();

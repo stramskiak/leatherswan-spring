@@ -1,7 +1,8 @@
 package com.leatherswan.artisticendeavors.jpa.config.db;
 
 import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+//import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.MySQL5InnoDBDialect;
 import org.springframework.context.annotation.Bean;
@@ -12,12 +13,10 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 
 import javax.sql.DataSource;
 
-//import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
-
 @Configuration
-@PropertySource("classpath:/META-INF/spring/mylocalsql.properties")
-@Profile(DataConfigProfile.MYLOCALSQL)
-public class MyLocalSqlConfig extends JpaCommonConfig {
+@PropertySource("classpath:/META-INF/spring/mysql.properties")
+@Profile(DataConfigProfile.MYSQL)
+public class MySqlConfig extends JpaCommonConfig {
 
     @Override
     @Bean

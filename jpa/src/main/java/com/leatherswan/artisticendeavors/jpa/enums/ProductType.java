@@ -3,15 +3,9 @@ package com.leatherswan.artisticendeavors.jpa.enums;
 /**
  * Modified by stramskiak
  */
-public enum PostDisplayType {
+public enum ProductType {
     LINK,
-    LINK_SUMMARY,
-    LINK_FEATURE,
     NOTE,
-    NA,
-    LEATHERSWAN_POST
+    REVIEW,
+    FOUR
 }
-
-
-
-

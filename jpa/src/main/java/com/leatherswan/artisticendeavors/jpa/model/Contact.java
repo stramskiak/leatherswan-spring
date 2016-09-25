@@ -49,7 +49,7 @@ public class Contact implements Serializable {
     private Set<ContactPhone> contactPhones;
     private Set<Hobby> hobbies;
     private Set<Post> posts;
-    private Set<Product> products;
+//    private Set<Product> products;
     private Set<Category> categories;
 
     private String createdByUser;
@@ -252,6 +252,7 @@ public class Contact implements Serializable {
 
     // region Contact/Product (Artist/Art solo or combined effort)
 
+/*
     @ManyToMany
     @JoinTable(name = "contact_product_ids",
             joinColumns=@JoinColumn(name="contact_id", referencedColumnName="contact_id", nullable=false),
@@ -266,6 +267,7 @@ public class Contact implements Serializable {
         product.getContacts().add(this);
         getProducts().add(product);
     }
+*/
 
     // endregion
 

@@ -49,6 +49,7 @@ dependencies {
 	testCompile project(':mail').sourceSets.test.output
 }
 
+
 /*if (OperatingSystem.current().isWindows()) {
 	task pathingJar(type: Jar) {
 		dependsOn configurations.runtime
@@ -76,8 +77,8 @@ dependencies {
 //		systemProperties System.properties
 
 		systemProperty 'server.port', '8080'
-        systemProperty 'spring.profiles.active', 'mylocalsql'
-        args("--appurl=http://localhost:8080")
+        systemProperty 'spring.profiles.active', 'mysql'
+        args("--appurl=http://localhost:8080/leatherswan.com")
         main = 'com.leatherswan.artisticendeavors.mvc.common.Application'
 	}
 

@@ -3,6 +3,7 @@ package com.leatherswan.artisticendeavors.jpa.dto;
 import com.leatherswan.artisticendeavors.jpa.model.Contact;
 import com.leatherswan.artisticendeavors.jpa.model.ContactBio;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.time.ZonedDateTime;
@@ -19,6 +20,7 @@ public class ContactBioDTO {
     private ZonedDateTime modificationTime;
 
     @NotEmpty
+    @Length(max=ContactBio.MAX_LENGTH_BIO)
     private String bio;
 
     public ContactBioDTO() {

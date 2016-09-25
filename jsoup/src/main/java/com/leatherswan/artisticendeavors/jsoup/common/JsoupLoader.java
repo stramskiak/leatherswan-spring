@@ -17,7 +17,7 @@ public class JsoupLoader implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        String applicationVersion = environment.getProperty("nixmash.spring.jsoup.version");
-        logger.info(String.format("NixMash Spring Jsoup Application Version: %s", applicationVersion));
+        String applicationVersion = environment.getProperty("leatherswan.spring.jsoup.version");
+        logger.info(String.format("LeatherSwan Spring Jsoup Application Version: %s", applicationVersion));
     }
 }

@@ -38,12 +38,12 @@ task showHome << {
 }
 
 task production << {
-    bootRun.systemProperty 'spring.profiles.active', 'myremotesql'
+    bootRun.systemProperty 'spring.profiles.active', 'mysql'
 }
 
 bootRun {
     addResources = false
-    systemProperty 'spring.profiles.active', 'mylocalsql'
+    systemProperty 'spring.profiles.active', 'mysql'
     main = 'com.leatherswan.artisticendeavors.jpa.JpaLauncher'
 }
 

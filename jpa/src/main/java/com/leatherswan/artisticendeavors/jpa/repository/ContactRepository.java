@@ -26,9 +26,11 @@ public interface ContactRepository extends PagingAndSortingRepository<Contact, L
             "where c.contactId = ?1")
     Contact findByContactIdWithDetail(Long contactId);
 
+/*
     @Query("select distinct c from Contact c left join fetch " +
             "c.products p where p.id = ?1")
     public List<Contact> findByProductId(long productId);
+*/
 
     @Query("select distinct c from Contact c left join fetch " +
             "c.contactPhones p left join fetch c.hobbies h left join fetch c.contactBio b")

@@ -24,8 +24,12 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     Post findByPostNameIgnoreCase(String postName) throws DataAccessException;
 
+    Post findByPostTitleIgnoreCase(String postTitle) throws DataAccessException;
+
+/*
     @Query("select distinct p from Post p left join p.product i where i.id = ?1")
     Page<Post> findPostsByProductId(long id, Pageable pageable);
+*/
 
     @Query("select distinct p from Post p left join p.contact i where i.id = ?1")
     Page<Post> findPostsByContactId(long id, Pageable pageable);

@@ -19,19 +19,23 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Collection;
 
-import com.leatherswan.artisticendeavors.jpa.enums.PostDisplayType;
-import com.leatherswan.artisticendeavors.jpa.enums.PostType;
-import com.leatherswan.artisticendeavors.jpa.model.Category;
-import com.leatherswan.artisticendeavors.jpa.model.Contact;
+import com.leatherswan.artisticendeavors.jpa.enums.ProductDisplayType;
+import com.leatherswan.artisticendeavors.jpa.enums.ProductType;
+import com.leatherswan.artisticendeavors.jpa.model.Product;
 import com.leatherswan.artisticendeavors.jpa.utils.ProductUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.geo.Point;
 
 public class ProductDTO implements Serializable {
 
 	private Long id;
+    @NotEmpty
 	private String name;
 	private Collection<CategoryDTO> categoriesDTO;
+    @NotEmpty
+    @Length(max= Product.MAX_PRODUCT_FEATURE_LENGTH)
 	private String features;
 	private Float weight;
 	private Float price;
@@ -45,8 +49,8 @@ public class ProductDTO implements Serializable {
 	private String productLink;
 	private ZonedDateTime productDate;
 	private ZonedDateTime productModified;
-	private PostType productType;
-	private PostDisplayType displayType;
+	private ProductType productType;
+	private ProductDisplayType displayType;
     private String productImage;
     private String productSource;
 	private String createdByUser;
@@ -159,19 +163,19 @@ public class ProductDTO implements Serializable {
         this.productModified = productModified;
     }
 
-    public PostType getProductType() {
+    public ProductType getProductType() {
         return productType;
     }
 
-    public void setProductType(PostType productType) {
+    public void setProductType(ProductType productType) {
         this.productType = productType;
     }
 
-    public PostDisplayType getDisplayType() {
+    public ProductDisplayType getDisplayType() {
         return displayType;
     }
 
-    public void setDisplayType(PostDisplayType displayType) {
+    public void setDisplayType(ProductDisplayType displayType) {
         this.displayType = displayType;
     }
 
@@ -279,7 +283,7 @@ public class ProductDTO implements Serializable {
         this.updateChildren = updateChildren;
     }
 
-    public static Builder getBuilder(String productTitle, String productLink, String features, PostType productType, PostDisplayType displayType) {
+    public static Builder getBuilder(String productTitle, String productLink, String features, ProductType productType, ProductDisplayType displayType) {
         return new ProductDTO.Builder(productTitle, productLink, features, productType, displayType);
     }
 
@@ -287,7 +291,7 @@ public class ProductDTO implements Serializable {
 
         private ProductDTO built;
 
-        public Builder(String title, String productLink, String productContent, PostType productType, PostDisplayType displayType) {
+        public Builder(String title, String productLink, String productContent, ProductType productType, ProductDisplayType displayType) {
             built = new ProductDTO();
             built.name = title;
             built.productLink = productLink;

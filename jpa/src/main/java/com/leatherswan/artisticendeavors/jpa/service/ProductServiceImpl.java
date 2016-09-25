@@ -47,11 +47,13 @@ public class ProductServiceImpl implements ProductService {
     @Resource
     private ContactRepository contactRepository;
 
+/*
     @Override
     public List<Product> getProductsByCategory(String category) {
         logger.info("Retrieving products by category: {}", category);
         return productRepository.findByCategory(category);
     }
+*/
 
     @Override
     public Iterable<Product> getAvailableProducts() {
@@ -75,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProducts() {
         logger.info("Retrieving all products by @Query");
         return productRepository.findAllProducts();
-//        return (List<Product>) productRepository.findAll();
+//        return Lists.newArrayList(productRepository.findAll());
     }
 
     @Override

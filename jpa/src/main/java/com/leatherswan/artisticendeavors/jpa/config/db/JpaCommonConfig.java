@@ -109,39 +109,39 @@ public abstract class JpaCommonConfig {
     // region Get Properties from datasource .properties file
 
     public String getDatabaseName() {
-        return environment.getProperty("spring.database.name", UNDEFINED);
+        return environment.getProperty("database.name", UNDEFINED);
     }
 
     public String getHost() {
-        return environment.getProperty("spring.database.host", UNDEFINED);
+        return environment.getProperty("database.host", UNDEFINED);
     }
 
     public String getPort() {
-        return environment.getProperty("spring.database.port", UNDEFINED);
+        return environment.getProperty("database.port", UNDEFINED);
     }
 
     public String getUrl() {
-        return environment.getProperty("spring.database.url", UNDEFINED);
+        return environment.getProperty("database.url", UNDEFINED);
     }
 
     public String getUser() {
-        return environment.getProperty("spring.database.username", UNDEFINED);
+        return environment.getProperty("database.username", UNDEFINED);
     }
 
     public String getPassword() {
-        return environment.getProperty("spring.database.password", UNDEFINED);
+        return environment.getProperty("database.password", UNDEFINED);
     }
 
     public String getDriverClassName() {
-        return environment.getProperty("spring.database.driverClassName", UNDEFINED);
+        return environment.getProperty("database.driverClassName", UNDEFINED);
     }
 
     public String getDialect() {
-        return environment.getProperty("spring.database.dialect", UNDEFINED);
+        return environment.getProperty("database.dialect", UNDEFINED);
     }
 
     public String getDatabaseVendor() {
-        return environment.getProperty("spring.database.vendor", UNDEFINED);
+        return environment.getProperty("database.vendor", UNDEFINED);
     }
 
     public String getHbm2ddl() {
@@ -154,11 +154,11 @@ public abstract class JpaCommonConfig {
 
 
     public String getHibernateCharSet() {
-        return environment.getProperty("spring.database.hibernateCharSet", "UTF-8");
+        return environment.getProperty("database.hibernateCharSet", "UTF-8");
     }
 
     public String getDatabaseValidationQuery() {
-        return environment.getProperty("spring.database.validation.query", UNDEFINED);
+        return environment.getProperty("database.validation.query", UNDEFINED);
     }
 
     // endregion

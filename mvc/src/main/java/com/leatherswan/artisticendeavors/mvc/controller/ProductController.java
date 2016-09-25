@@ -74,9 +74,6 @@ public class ProductController {
 	@RequestMapping(value = "/products/json", method = RequestMethod.GET)
 	public @ResponseBody List<Product> getProductsByLocation() {
 
-        //    session.setAttribute("products", productService.getProducts());
-       // model.addAttribute("products", productService.getProducts());
-
         locationProducts = productService.getProducts();
 		return locationProducts;
 	}
@@ -112,8 +109,6 @@ public class ProductController {
 	@RequestMapping(value = "/products")
 	public String productsRedirect(HttpServletRequest request) {
 		request.getSession().setAttribute(SESSION_ATTRIBUTE_PRODUCTLIST, null);
-        //    session.setAttribute("products", productService.getProducts());
-        // model.addAttribute("products", productService.getProducts());
 		return "redirect:/products/page/1";
 	}
 
@@ -126,8 +121,6 @@ public class ProductController {
 				.getAttribute(SESSION_ATTRIBUTE_PRODUCTLIST);
 
 		if (pagedListHolder == null) {
-            //    session.setAttribute("products", productService.getProducts());
-            // model.addAttribute("products", productService.getProducts());
 			pagedListHolder = new PagedListHolder<Product>(productService.getProducts());
 			pagedListHolder.setPageSize(PRODUCT_LIST_PAGE_SIZE);
 
@@ -170,6 +163,7 @@ public class ProductController {
 	}
 */
 
+/*
 	@RequestMapping(value = "/products/categories/{category}", method = GET)
 	public String productByCategory(@PathVariable("category") String category, Model model) {
 		logger.info("Showing product page for category: {}", category);
@@ -181,6 +175,7 @@ public class ProductController {
 		model.addAttribute(MODEL_ATTRIBUTE_PRODUCTS, found);
 		return PRODUCTS_BYCATEGORY_VIEW;
 	}
+*/
 
 /*
 	@RequestMapping(value = "/products/list", method = RequestMethod.GET)

@@ -19,11 +19,13 @@ import com.leatherswan.artisticendeavors.jpa.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface UserRepository extends Repository<User, Long> {
 
     User findByUsername(String username) throws DataAccessException;

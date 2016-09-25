@@ -19,7 +19,7 @@ public class Category implements Serializable {
     private long categoryId;
     private String categoryValue;
     private Set<Contact> contacts;
-    private Set<Product> products;
+//    private Set<Product> products;
 
     public Category() {
     }
@@ -71,6 +71,7 @@ public class Category implements Serializable {
 
     //region Product/Categories (Art/Medium)
 
+/*
     @ManyToMany(mappedBy = "categories")
 	public Set<Product> getProducts() {
 		return products;
@@ -81,6 +82,7 @@ public class Category implements Serializable {
 	public void addProduct(Product product) {
 	    this.getProducts().add(product);
     }
+*/
 
     // endregion
 

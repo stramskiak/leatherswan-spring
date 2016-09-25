@@ -11,6 +11,7 @@ public class SiteOption implements Serializable {
 
     private static final long serialVersionUID = 6690621866489266673L;
     public static final int MAX_LENGTH_PROPERTYNAME = 50;
+    public static final int MAX_LENGTH_PROPERTYVALUE = 96;
 
     @Id
     @Column(name = "option_id", unique = true, nullable = false)
@@ -21,7 +22,7 @@ public class SiteOption implements Serializable {
     @NotEmpty
     private String name;
 
-    @Column(name = "option_value", columnDefinition="TEXT")
+    @Column(name = "option_value")
     private String value;
 
     public Long getOptionId() {

@@ -17,16 +17,14 @@ package com.leatherswan.artisticendeavors.jpa.model;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
-import com.leatherswan.artisticendeavors.jpa.enums.PostDisplayType;
-import com.leatherswan.artisticendeavors.jpa.enums.PostType;
+import com.leatherswan.artisticendeavors.jpa.enums.ProductDisplayType;
+import com.leatherswan.artisticendeavors.jpa.enums.ProductType;
 import com.leatherswan.artisticendeavors.jpa.utils.ProductUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
@@ -44,6 +42,7 @@ public class Product implements Serializable {
     public static final int MAX_PRODUCT_TITLE_LENGTH = 200;
     public static final int MAX_PRODUCT_NAME_LENGTH = 200;
     public static final int MAX_PRODUCT_IMAGE_LENGTH = 200;
+    public static final int MAX_PRODUCT_FEATURE_LENGTH = 2048;
 
     public static final int MIN_LENGTH_TITLE = 3;
     public static final int MIN_LENGTH_FILENAME = 3;
@@ -51,9 +50,9 @@ public class Product implements Serializable {
 	private Long id;
 	private String name;
 	private String features;
-    private Set<Contact> contacts;
-    private Set<Post> posts;
-    private Set<Category> categories;
+//    private Set<Contact> contacts;
+//    private Set<Post> posts;
+//    private Set<Category> categories;
 	private Float weight = 0f;
 	private Float price = 0f;
 	private Integer popularity = 10;
@@ -64,8 +63,8 @@ public class Product implements Serializable {
     private String productLink;
     private ZonedDateTime productDate;
     private ZonedDateTime productModified;
-    private PostType productType;
-    private PostDisplayType displayType;
+    private ProductType productType;
+    private ProductDisplayType displayType;
     private String productSource;
     private String productImage;
     private String createdByUser;
@@ -116,7 +115,7 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-    @Column(name = "product_content", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "product_content", nullable = false, length = MAX_PRODUCT_FEATURE_LENGTH)
 	public String getFeatures() {
 		return features;
 	}
@@ -204,10 +203,10 @@ public class Product implements Serializable {
 		this.point = point;
 	}
 
-    public boolean hasCategories() {
+ /*   public boolean hasCategories() {
         return (this.categories != null);
     }
-
+*/
 	public boolean hasFeatures() {
 	        return (this.features != null);
 	    }
@@ -243,7 +242,6 @@ public class Product implements Serializable {
     @Column(name = "product_date", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
     @CreatedDate
-    @Convert(disableConversion = true)
     public ZonedDateTime getProductDate() {
         return productDate;
     }
@@ -253,8 +251,7 @@ public class Product implements Serializable {
 
     @Column(name = "product_modified", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
-    @CreatedDate
-    @Convert(disableConversion = true)
+    @LastModifiedDate
     public ZonedDateTime getProductModified() {
         return productModified;
     }
@@ -264,19 +261,19 @@ public class Product implements Serializable {
 
     @Column(name = "product_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    public PostType getProductType() {
+    public ProductType getProductType() {
         return productType;
     }
-    public void setProductType(PostType productType) {
+    public void setProductType(ProductType productType) {
         this.productType = productType;
     }
 
     @Column(name = "display_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    public PostDisplayType getDisplayType() {
+    public ProductDisplayType getDisplayType() {
         return displayType;
     }
-    public void setDisplayType(PostDisplayType displayType) {
+    public void setDisplayType(ProductDisplayType displayType) {
         this.displayType = displayType;
     }
 
@@ -328,6 +325,7 @@ public class Product implements Serializable {
 
     //region Product/Contacts (Art/Artists)
 
+/*
     @ManyToMany(mappedBy = "products")
     public Set<Contact> getContacts() {
         return contacts;
@@ -338,11 +336,13 @@ public class Product implements Serializable {
     public void addContact(Contact contact) {
         this.getContacts().add(contact);
     }
+*/
 
     // endregion
 
     //region Product/Categories (Art/Medium)
 
+/*
     @ManyToMany
     @JoinTable(name = "product_category_ids",
             joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false),
@@ -356,12 +356,14 @@ public class Product implements Serializable {
     public void addCategory(Category category) {
         this.getCategories().add(category);
     }
+*/
 
     // endregion
 
     //region Product/Posts
     // Artist/Reviews by Users
 
+/*
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     public Set<Post> getPosts() {
         return posts;
@@ -369,12 +371,13 @@ public class Product implements Serializable {
     public void setPosts(Set<Post> posts) {
         this.posts = posts;
     }
+*/
 
     // endregion
 
     //region Builders and Strings
 
-    public static Builder getBuilder(String productTitle, String productLink, String productContent, PostType productType, PostDisplayType displayType) {
+    public static Builder getBuilder(String productTitle, String productLink, String productContent, ProductType productType, ProductDisplayType displayType) {
         return new Product.Builder(productTitle, productLink, productContent, productType, displayType);
     }
 
@@ -382,7 +385,7 @@ public class Product implements Serializable {
 
         private Product built;
 
-        public Builder(String title, String productLink, String productContent, PostType productType, PostDisplayType displayType) {
+        public Builder(String title, String productLink, String productContent, ProductType productType, ProductDisplayType displayType) {
             built = new Product();
             built.name = title;
             built.productLink = productLink;

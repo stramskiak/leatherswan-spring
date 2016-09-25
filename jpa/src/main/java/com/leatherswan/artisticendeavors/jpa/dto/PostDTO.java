@@ -29,12 +29,14 @@ public class PostDTO implements Serializable {
     private String postTitle;
 
     @NotEmpty
+    @Length(max= Post.MAX_POST_CONTENT_LENGTH)
     private String postContent;
 
     private String postName;
 
     private String postLink;
 
+    @Length(max= Post.MAX_POST_IMAGE_LENGTH)
     private String postImage;
 
     private ZonedDateTime postDate;

@@ -52,5 +52,5 @@ public interface PostService {
 
     List<ProductDTO> getProductDTOsByPostId(Long postId);
 
-    Page<Post> getPostsByProductId(long productId, int pageNumber, int pageSize);
+//    Page<Post> getPostsByProductId(long productId, int pageNumber, int pageSize);
 }

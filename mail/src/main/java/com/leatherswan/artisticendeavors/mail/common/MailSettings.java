@@ -9,7 +9,7 @@ For development: C:/Users/Anita/web/leatherswan/mail.properties
 For Production: /home/stramska/web/leatherswan/mail.properties
 */
 @Component
-@PropertySource("file:/home/stramska/web/leatherswan/mail.properties")
+@PropertySource("file:C:/Users/Anita/web/leatherswan/mail.properties")
 @ConfigurationProperties(prefix = "mail")
 public class MailSettings {
 

@@ -32,6 +32,7 @@ public class Post implements Serializable {
     public static final int MAX_POST_TITLE_LENGTH = 200;
     public static final int MAX_POST_NAME_LENGTH = 200;
     public static final int MAX_POST_IMAGE_LENGTH = 200;
+    public static final int MAX_POST_CONTENT_LENGTH = 2048;
 
     // region properties
 
@@ -70,7 +71,7 @@ public class Post implements Serializable {
     @Column(name = "is_published", nullable = false)
     private Boolean isPublished = true;
 
-    @Column(name = "post_content", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "post_content", nullable = false, length = MAX_POST_CONTENT_LENGTH)
     private String postContent;
 
     @Column(name = "post_source", length = 50)
@@ -99,6 +100,7 @@ public class Post implements Serializable {
                     nullable = false))
     public Set<Tag> tags;
 
+/*
     @ManyToOne
     @JoinTable(name = "post_product_ids",
             joinColumns = @JoinColumn(name = "post_id",
@@ -108,6 +110,7 @@ public class Post implements Serializable {
                     referencedColumnName = "product_id",
                     nullable = false))
     public Product product;
+*/
 
     @ManyToOne
     @JoinTable(name = "post_contact_ids",
@@ -176,7 +179,7 @@ public class Post implements Serializable {
     }
 
     public String getPostLink() {
-        return postLink;
+            return postLink;
     }
 
     public void setPostLink(String postLink) {
@@ -293,6 +296,7 @@ public class Post implements Serializable {
         this.tags = tags;
     }
 
+/*
     public Product getItems() {
         return product;
     }
@@ -300,6 +304,7 @@ public class Post implements Serializable {
     public void setProduct(Product product) {
         this.product = product;
     }
+*/
 
     public Contact getContact() {
         return contact;

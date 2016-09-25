@@ -32,7 +32,7 @@ public interface ProductService {
 
 	List<Product> getProductsByStartOfName(String nameStart);
 
-	List<Product> getProductsByCategory(String category);
+//	List<Product> getProductsByCategory(String category);
 
 	List<Product> getProductsByLocation(String LatLng)  throws GeoLocationException;
 

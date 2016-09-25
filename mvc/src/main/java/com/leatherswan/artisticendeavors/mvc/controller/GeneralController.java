@@ -54,7 +54,6 @@ public class GeneralController {
         model.addAttribute("gitHubStats", webUI.getGitHubStats());
 
         return HOME_VIEW;
-//        return ITEM_LIST_VIEW;
     }
 
 

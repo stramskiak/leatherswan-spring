@@ -327,7 +327,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 CREATE TABLE `contact_bio` (
 `contact_bio_id`    bigint(20)    NOT NULL AUTO_INCREMENT,
 `contact_id`    bigint(20)    NOT NULL,
-`bio`    TEXT,
+`bio`    TEXT(2048),
 `image_url`    varchar(200),
 `created_by_user`    varchar(50)    NOT NULL,
 `creation_time`       timestamp    NOT NULL, -- DEFAULT '0000-00-00 00:00:00',
@@ -378,7 +378,7 @@ CREATE TABLE `site_options`
 (
   `option_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `option_name` VARCHAR(50) NOT NULL,
-  `option_value` TEXT,
+  `option_value` TEXT(96),
   PRIMARY KEY (`option_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -409,7 +409,7 @@ CREATE TABLE `posts` (
 `is_published`    tinyint(1)    NOT NULL DEFAULT '0',
 `is_contact_review`    tinyint(1)    NOT NULL DEFAULT '0',
 `is_product_review`    tinyint(1)    NOT NULL DEFAULT '0',
-`post_content`    text    NOT NULL,
+`post_content`    text(2048)    NOT NULL,
 `post_source`    varchar(50)    NOT NULL DEFAULT 'NA',
 `post_image`    varchar(200)     DEFAULT NULL,
 `click_count`    INT(11)    NOT NULL DEFAULT '0',
@@ -423,14 +423,14 @@ CONSTRAINT `posts_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 
-INSERT INTO `posts` VALUES ('1', '7', '11', '10', ' Sleeping Baby ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Making babies is great fun!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('2', '1', '11', '10', ' Angel ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('3', '2', '11', '10', ' Great Jewelry ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Cant wait to see what comes next!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('4', '2', '11', '10', ' Fabulous ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Fun and playful.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('5', '2', '11', '10', ' Very Happy ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'A riot of color and form.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('6', '9', '11', '10', ' Fun Logo ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Such a fun logo, it really has a history!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('7', '5', '11', '10', ' Excellent instructions ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Complex pattern with step-by-step construction help.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('8', '1', '11', '10', ' Angel in flight ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', '1', 'NA', '0', '0', '1', 'Love my angel. A flight of fancy for the young at heart.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('1', '7', '11', '10', ' Sleeping Baby ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Making babies is great fun!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('2', '1', '11', '10', ' Angel ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('3', '2', '11', '10', ' Great Jewelry ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Cant wait to see what comes next!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('4', '2', '11', '10', ' Fabulous ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Fun and playful.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('5', '2', '11', '10', ' Very Happy ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A riot of color and form.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('6', '9', '11', '10', ' Fun Logo ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Such a fun logo, it really has a history!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('7', '5', '11', '10', ' Excellent instructions ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Complex pattern with step-by-step construction help.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('8', '1', '11', '10', ' Angel in flight ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Love my angel. A flight of fancy for the young at heart.', 'NA', 'NA', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for tags
@@ -489,7 +489,7 @@ CREATE TABLE `products` (
 `display_type`    varchar(20)    NOT NULL DEFAULT 'LINK',
 `is_published`    tinyint(1)    NOT NULL DEFAULT '0',
 `is_sold`    tinyint(1)    NOT NULL DEFAULT '0',
-`product_content`    text    NOT NULL,
+`product_content`    text(2048)    NOT NULL,
 `product_source`    varchar(50)    NOT NULL DEFAULT 'NA',
 `product_image`    varchar(200)     DEFAULT NULL,
 `click_count`    INT(11)    NOT NULL DEFAULT '0',
@@ -502,15 +502,15 @@ PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 
-INSERT INTO `products` VALUES ('1', '3D Paper Angel', 'a01b01', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'Original papercraft design for your enjoyment.', 'NA', 'angel01blue01.gif', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('2', 'Glass Bead Jewelry', 'gbCollection', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '4', 'NA', '0', '0', 'Lampworked glass beads in handcrafted jewelry.', 'NA', 'GlassBeadCollection.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('3', 'Angel 01 Variations', 'a01KitVar', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'A range of color options to suit your special occation. ', 'NA', 'AngelKitVariation.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('4', 'Angel 01 Kit', 'a01b02', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'This angel kit is available now!', 'NA', 'angel01blue02.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('5', 'Angel 01 Kit Parts', 'a01parts', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'An example of the paper cutouts included in every Angel 01 Kit', 'NA', 'angel01parts.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('6', 'Angel 01 Kit Construction Video', 'a01video', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '1', 'NA', '0', '0', 'follow the link www.leatherswan.com/video/video.mp3 to see construction', 'NA', 'angel01video.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('7', 'Sleeping Baby', 'b01', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '3', 'NA', '0', '0', 'A special baby reminding me to relax!', 'NA', 'Babies01.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('8', 'MakeNbabies for the March of Dimes', 'bMoD', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '3', 'NA', '0', '0', 'A grass roots effort to spread the word of healthy babies thru crafty connections.', 'NA', 'make_n_babies.jpg', '0', '0', '0', 'admin', 'admin', '0');
-INSERT INTO `products` VALUES ('9', 'Leather Swan Original', 'LSLogo', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', '4', 'NA', '0', '0', 'A suprise find in an antique store', 'NA', 'My Leather Swan.gif', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('1', '3D Paper Angel', 'a01b01', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'Original papercraft design for your enjoyment.', 'NA', 'angel01blue01.gif', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('2', 'Glass Bead Jewelry', 'gbCollection', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'Lampworked glass beads in handcrafted jewelry.', 'NA', 'GlassBeadCollection.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('3', 'Angel 01 Variations', 'a01KitVar', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'A range of color options to suit your special occation. ', 'NA', 'AngelKitVariation.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('4', 'Angel 01 Kit', 'a01b02', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'This angel kit is available now!', 'NA', 'angel01blue02.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('5', 'Angel 01 Kit Parts', 'a01parts', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'An example of the paper cutouts included in every Angel 01 Kit', 'NA', 'angel01parts.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('6', 'Angel 01 Kit Construction Video', 'a01video', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'follow the link www.leatherswan.com/video/video.mp3 to see construction', 'NA', 'angel01video.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('7', 'Sleeping Baby', 'b01', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'A special baby reminding me to relax!', 'NA', 'Babies01.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('8', 'MakeNbabies for the March of Dimes', 'bMoD', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'A grass roots effort to spread the word of healthy babies thru crafty connections.', 'NA', 'make_n_babies.jpg', '0', '0', '0', 'admin', 'admin', '0');
+INSERT INTO `products` VALUES ('9', 'Leather Swan Original', 'LSLogo', '', '2015-09-10 19:18:38', '2015-09-10 19:18:38', 'LINK', 'LINK_SUMMARY', '0', '0', 'A suprise find in an antique store', 'NA', 'My Leather Swan.gif', '0', '0', '0', 'admin', 'admin', '0');
 
 -- ----------------------------
 -- Table structure for product_category_ids

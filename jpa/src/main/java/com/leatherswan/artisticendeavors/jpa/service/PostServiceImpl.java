@@ -119,6 +119,7 @@ public class PostServiceImpl implements PostService {
     @Transactional(readOnly = true)
     @Override
     public Post getPost(String postName) throws PostNotFoundException {
+//        Post found = postRepository.findByPostTitleIgnoreCase(postName);
         Post found = postRepository.findByPostNameIgnoreCase(postName);
         if (found == null) {
             logger.info("No post found with id: {}", postName);
@@ -161,6 +162,7 @@ public class PostServiceImpl implements PostService {
         return null;
     }
 
+/*
     @Transactional(readOnly = true)
     @Override
     public Page<Post> getPostsByProductId(long productId, int pageNumber, int pageSize) {
@@ -168,6 +170,7 @@ public class PostServiceImpl implements PostService {
                 new PageRequest(pageNumber, pageSize, sortByPostDateDesc());
         return postRepository.findPostsByProductId(productId,pageRequest);
     }
+*/
 
     //endregion
 
