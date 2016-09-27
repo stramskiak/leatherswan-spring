@@ -3,7 +3,7 @@
 	xmlns:spring="http://www.springframework.org/tags">
 <div th:include="fragments/head :: head" th:remove="tag">[Global Header]</div>
 <head>
-<title th:text="#{login.page.itemTitle}">[LeatherSwan Artistic Endeavors Login Page]</title>
+<title th:text="#{login.page.title}">[LeatherSwan Artistic Endeavors Login Page]</title>
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/social-buttons-3.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.css}" />
@@ -43,7 +43,7 @@
 					There was an error, please try again.
 				</div>
 
-				<h2 th:text="#{login.form.itemTitle}" class="form-itemTitle">[Please log in]</h2>
+				<h2 th:text="#{login.form.title}" class="form-title">[Please log in]</h2>
 
 				<form name="form" th:action="@{/signin/authenticate}" method="POST" class="form-horizontal">
 					<fieldset>

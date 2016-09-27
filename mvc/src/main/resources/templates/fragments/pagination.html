@@ -13,7 +13,7 @@
 						th:if='${pager.currentIndex == 1}'>«</span> <a
 						th:if='${pager.currentIndex != 1}'
 						th:href="@{|${pager.baseUrl}${pager.currentIndex - 1}|}"
-						itemTitle='Go to previous page'>«</a></li>
+						title='Go to previous page'>«</a></li>
 
 					<li th:each="item : ${#numbers.sequence(pager.beginIndex,pager.endIndex)}"
 						th:class="${item == pager.currentIndex ? 'active' : '' }"><span
@@ -26,7 +26,7 @@
 						<span th:if='${pager.currentIndex == pager.totalPageCount}'>»</span> <a
 						th:if='${pager.currentIndex != pager.totalPageCount}'
 						th:href="@{|${pager.baseUrl}${pager.currentIndex + 1}|}"
-						itemTitle='Go to next page'>»</a>
+						title='Go to next page'>»</a>
 					</li>
 					<li th:class="${pager.currentIndex == pager.totalPageCount}? 'disabled' : ''">
 						<span th:if='${pager.currentIndex == pager.totalPageCount}'>Last</span> <a

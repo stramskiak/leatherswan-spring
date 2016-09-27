@@ -201,7 +201,7 @@ public class PostServiceImpl implements PostService {
 
     @Transactional(readOnly = true)
     @Override
-    public Set<TagDTO> getTagDTOsByPostId() {
+    public Set<TagDTO> getTagDTOs() {
         Set<Tag> tags = tagRepository.findAll();
         return PostUtils.tagsToTagDTOs(tags);
     }

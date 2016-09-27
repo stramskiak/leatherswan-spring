@@ -4,11 +4,11 @@
 <head>
     <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
     <title>
-          <span th:if="${contact['new']}" th:remove="tag" th:text="#{contactform.page.itemTitle.new}">
+          <span th:if="${contact['new']}" th:remove="tag" th:text="#{contactform.page.title.new}">
                     [New Contact]
                 </span>
         <span th:unless="${contact['new']}" th:remove="tag"
-              th:text="#{contactform.page.itemTitle.update}">
+              th:text="#{contactform.page.title.update}">
                      [Update Contact]
              </span>
     </title>
@@ -136,7 +136,7 @@
                 <table class="table table-striped" th:if="${!contact['new']}">
                     <tr>
                         <td class="col-sm-1">
-                            <label th:text="#{contactform.hobbies.itemTitle}">[Hobbies]</label>
+                            <label th:text="#{contactform.hobbies.title}">[Hobbies]</label>
                         </td>
                         <td class="col-sm-2">
                             <ul class="hobbyList">

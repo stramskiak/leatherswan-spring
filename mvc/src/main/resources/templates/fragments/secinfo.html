@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
 	<div id="secInfo">
-		<h3 th:text="#{secinfo.itemTitle}">[USER INFO]</h3>
+		<h3 th:text="#{secinfo.title}">[USER INFO]</h3>
 		<p class="secLine">____________________</p>
 		<div th:if="${currentUser != null}" th:remove="tag">
 			<div class="secItem">
@@ -30,8 +30,8 @@
 			</div>
 		</div>
 		<div class="github-footer">
-			<a href="https://github.com/stramskiak/leatherswan-app"><img src="/images/github.png" th:src="@{/images/github.png}" alt="LeatherSwan Spring on GitHub"/></a> <a
-				href="https://github.com/stramskiak/leatherswan-app" class="github-version"> <span th:text="${@environment.getProperty('web.site.version')}" th:remove="tag">[SITE NAME AND VERSION]</span></a>
+			<a href="https://github.com/stramskiak/leatherswan-spring"><img src="/images/github.png" th:src="@{/images/github.png}" alt="LeatherSwan Spring on GitHub"/></a> <a
+				href="https://github.com/stramskiak/leatherswan-spring" class="github-version"> <span th:text="${@environment.getProperty('web.site.version')}" th:remove="tag">[SITE NAME AND VERSION]</span></a>
 		</div>
 	</div>
 </body>

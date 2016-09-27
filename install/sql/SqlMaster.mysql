@@ -423,14 +423,16 @@ CONSTRAINT `posts_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 
-INSERT INTO `posts` VALUES ('1', '7', '11', '10', ' Sleeping Baby ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Making babies is great fun!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('2', '1', '11', '10', ' Angel ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('3', '2', '11', '10', ' Great Jewelry ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Cant wait to see what comes next!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('4', '2', '11', '10', ' Fabulous ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Fun and playful.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('5', '2', '11', '10', ' Very Happy ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A riot of color and form.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('6', '9', '11', '10', ' Fun Logo ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Such a fun logo, it really has a history!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('7', '5', '11', '10', ' Excellent instructions ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Complex pattern with step-by-step construction help.', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('8', '1', '11', '10', ' Angel in flight ', 'likeitnow', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Love my angel. A flight of fancy for the young at heart.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('1', '7', '11', '10', 'Sleeping Baby', 'SleepingBaby', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Making babies is great fun!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('2', '1', '11', '10', 'Angel', 'Angel', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('3', '2', '11', '10', 'Great Jewelry', 'GreatJewelry', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Cant wait to see what comes next!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('4', '2', '11', '10', 'Fabulous', 'Fabulous', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Fun and playful.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('5', '2', '11', '10', 'Very Happy', 'VeryHappy', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A riot of color and form.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('6', '9', '11', '10', 'Fun Logo', 'FunLogo', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Such a fun logo, it really has a history!', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('7', '5', '11', '10', 'Excellent Instructions', 'ExcellentInstructions', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Complex pattern with step-by-step construction help.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('8', '1', '11', '10', 'Angel In Flight', 'AngelInFlight', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Love my angel. A flight of fancy for the young at heart.', 'NA', 'NA', '0', '0', '0', '0');
+
+-- UPDATE `posts` SET `post_name`='SleepingBaby' WHERE `post_id`=1;
 
 -- ----------------------------
 -- Table structure for tags

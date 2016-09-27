@@ -6,6 +6,5 @@ package com.leatherswan.artisticendeavors.jpa.enums;
 public enum ProductType {
     LINK,
     NOTE,
-    REVIEW,
-    FOUR
+    REVIEW
 }

@@ -25,6 +25,7 @@ import java.util.List;
 import static java.util.stream.Collectors.joining;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+/*
 @Controller
 //@RequestMapping(value = "/spring")
 public class SpringController {
@@ -53,34 +54,5 @@ public class SpringController {
         return SPRING_VIEW;
     }
 
-
-    @RequestMapping(value = "/json/badges/update", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String updateBadges(@RequestBody List<String> badgeboys) {
-        if (badgeboys != null) {
-            String badges = badgeboys.stream().collect(joining(", "));
-            logger.info("Badge Boy Items: " + badges);
-            return webUI.getMessage("js.badgeboy.result", badges);
-        } else
-            return "No badges selected...";
-    }
-
-    @RequestMapping(value = "/json/badges", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<SelectOptionDTO> getBadges() {
-        return badgeSelectOptions();
-    }
-
-    private List<SelectOptionDTO> badgeSelectOptions() {
-        List<SelectOptionDTO> selectOptionDTOs = new ArrayList<>();
-        selectOptionDTOs.add(new SelectOptionDTO("Innovative", "Innovative", false));
-        selectOptionDTOs.add(new SelectOptionDTO("Creator", "Creator", true));
-        selectOptionDTOs.add(new SelectOptionDTO("Spiritual", "Spiritual", false));
-        selectOptionDTOs.add(new SelectOptionDTO("Worldly", "Worldly", false));
-        selectOptionDTOs.add(new SelectOptionDTO("Leader", "Leader", false));
-        selectOptionDTOs.add(new SelectOptionDTO("Worthy", "Worthy", false));
-        return selectOptionDTOs;
-    }
 }
+*/

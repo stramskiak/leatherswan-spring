@@ -283,7 +283,7 @@
    <copyField source="price" dest="price_c"/>
 
    <!-- Text fields from SolrCell to search by default in our catch-all field -->
-   <copyField source="itemTitle" dest="text"/>
+   <copyField source="title" dest="text"/>
    <copyField source="author" dest="text"/>
    <copyField source="description" dest="text"/>
    <copyField source="keywords" dest="text"/>

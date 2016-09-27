@@ -249,9 +249,9 @@ public class PostsControllerTests extends AbstractContext {
     @Test
     @WithPostUser
     public void newLinkPostAddsTwoNewTags() throws Exception {
-        int tagStartCount = postService.getTagDTOsByPostId().size();
+        int tagStartCount = postService.getTagDTOs().size();
         mockMvc.perform(postRequest(PostType.LINK, "addsTwoTags"));
-        int tagEndCount = postService.getTagDTOsByPostId().size();
+        int tagEndCount = postService.getTagDTOs().size();
         assertEquals(tagStartCount + 2, tagEndCount);
     }
 

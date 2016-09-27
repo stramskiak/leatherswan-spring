@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
-    <title th:text="#{user.page.itemTitle}"></title>
+    <title th:text="#{user.page.title}"></title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
                         $('#updateImageForm').css('display', 'inline-block');
                     }
                     else
-                        showDialog([[#{js.profile.user.locked.itemTitle}]],
+                        showDialog([[#{js.profile.user.locked.title}]],
                                 [[#{js.profile.user.locked.message}]])
                 }
         );

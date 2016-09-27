@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
-<itemTitle th:text="#{product.categories.page.itemTitle}">[LeatherSwan Artistic Endeavors Products by Category]</itemTitle>
+<title th:text="#{product.categories.page.title}">[LeatherSwan Artistic Endeavors Products by Category]</title>
 </head>
 <body>
 	<nav th:replace="fragments/navbar :: navbar('demos')">Navbar</nav>

@@ -8,7 +8,6 @@ public enum PostDisplayType {
     LINK_SUMMARY,
     LINK_FEATURE,
     NOTE,
-    NA,
     LEATHERSWAN_POST
 }
 

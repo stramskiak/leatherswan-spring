@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/highlight/github.css}"/>
     <script th:src="@{/js/highlight.pack.js}"></script>
 
-    <itemTitle th:utext="#{posts.tags.page.itemTitle(${tag.tagValue})}">[LeatherSwan Artistic Endeavors
-        Posts by Tag]</itemTitle>
+    <title th:utext="#{posts.tags.page.title(${tag.tagValue})}">[LeatherSwan Artistic Endeavors
+        Posts by Tag]</title>
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar('posts')">Navbar</nav>

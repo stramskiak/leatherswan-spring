@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
-<title th:text="#{signup.page.itemTitle}">[LeatherSwan Artistic Endeavors Signup Page]</title>
+<title th:text="#{signup.page.title}">[LeatherSwan Artistic Endeavors Signup Page]</title>
 </head>
 <body role="document" onload="$('input[name=firstName]').focus();">
 	<nav th:replace="fragments/navbar :: navbar('home')">Navbar</nav>

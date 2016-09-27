@@ -1,4 +1,4 @@
-<div class="post-date"><span>Posted on </span><abbr itemTitle="${post.postDate}">${postCreated}</abbr>
+<div class="post-date"><span>Posted on </span><abbr title="${post.postDate}">${postCreated}</abbr>
 </div>
 <div class="post-tags">
     #foreach ( ${tag} in ${post.tags})
@@ -9,5 +9,5 @@
     #end
 </div>
 #if (${post.postType.name()} == "LINK")
-<a target="_blank" href="${post.postLink}" class="remote-link" itemTitle="Go to External Site">${post.postSource}</a>
+<a target="_blank" href="${post.postLink}" class="remote-link" title="Go to External Site">${post.postSource}</a>
 #end

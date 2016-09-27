@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/highlight/github.css}"/>
     <script th:src="@{/js/highlight.pack.js}"></script>
 
-    <itemTitle th:text="|#{post.page.itemTitle.prefix(${post.postTitle})}|">[Page Title]</itemTitle>
+    <title th:text="|#{post.page.title.prefix(${post.postTitle})}|">[Page Title]</<title>
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar('posts')">Navbar</nav>
@@ -19,7 +19,7 @@
         <div class="row post-header-row">
             <div th:replace="fragments/sponsor :: [id='sponsor']">[sponsor image]</div>
             <div class="col-lg-12">
-                <h1 th:text="${post.postTitle}" class="post-itemTitle">[post itemTitle]</h1>
+                <h1 th:text="${post.title}" class="post-title">[post title]</h1>
             </div>
         </div>
     </div>

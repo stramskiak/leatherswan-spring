@@ -240,7 +240,7 @@ public class Product implements Serializable {
     }
 
     @Column(name = "product_date", nullable = false)
-    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+//    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
     @CreatedDate
     public ZonedDateTime getProductDate() {
         return productDate;
@@ -250,7 +250,7 @@ public class Product implements Serializable {
     }
 
     @Column(name = "product_modified", nullable = false)
-    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime")
+//    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
     @LastModifiedDate
     public ZonedDateTime getProductModified() {
         return productModified;

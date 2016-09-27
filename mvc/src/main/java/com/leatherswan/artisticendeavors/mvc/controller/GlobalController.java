@@ -8,7 +8,7 @@ import com.leatherswan.artisticendeavors.jpa.exceptions.PostNotFoundException;
 import com.leatherswan.artisticendeavors.jpa.exceptions.ResourceNotFoundException;
 import com.leatherswan.artisticendeavors.jpa.model.CurrentUser;
 import com.leatherswan.artisticendeavors.mvc.components.WebUI;
-//import com.leatherswan.artisticendeavors.solr.exceptions.GeoLocationException;
+import com.leatherswan.artisticendeavors.jpa.exceptions.GeoLocationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +105,7 @@ public class  GlobalController {
 		mav.setViewName(ERROR_CUSTOM_VIEW);
 		return mav;
 	}
-/**
+
 	@ExceptionHandler(GeoLocationException.class)
 	public ModelAndView handleGeoLocationException(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -115,7 +115,6 @@ public class  GlobalController {
 		mav.setViewName(PRODUCT_MAP_VIEW);
 		return mav;
 	}
-*/
 	@ExceptionHandler(DuplicatePostNameException.class)
 	public ModelAndView handleDuplicatePostNameException(
 			HttpServletRequest request) {

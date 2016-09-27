@@ -38,7 +38,7 @@ public interface PostService {
     List<Post> getPostsWithDetail();
 
     @Transactional(readOnly = true)
-    Set<TagDTO> getTagDTOsByPostId();
+    Set<TagDTO> getTagDTOs();
 
     boolean canUpdatePost(Authentication authentication, Long postId);
 

@@ -44,7 +44,7 @@ allprojects {
 		compile 'org.javassist:javassist'
 		compile 'commons-dbcp:commons-dbcp'
 //		compile 'org.apache.tomcat:tomcat-dbcp:8.0.24'
-		compileOnly 'org.apache.tomcat:tomcat-dbcp:7.0.47'
+		compile 'org.apache.tomcat:tomcat-dbcp:7.0.47'
 		compile 'com.google.guava:guava-gwt:18.0'
 		compile 'org.apache.commons:commons-lang3:3.4'
 		compile 'commons-beanutils:commons-beanutils:1.9.2'

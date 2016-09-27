@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:include="fragments/error-head :: head" th:remove="tag">Global Header</div>
-    <itemTitle>LeatherSwan Artistic Endeavors Home Page</itemTitle>
+    <title>LeatherSwan Artistic Endeavors Home Page</title>
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar('error')">Navbar</nav>
@@ -11,7 +11,7 @@
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-6">
-                <h1 th:text="${errortitle}">[error itemTitle]</h1>
+                <h1 th:text="${errortitle}">[error title]</h1>
 
                 <p class="lead" th:utext="${errorbody}">[error body]</p>
             </div>

@@ -3,6 +3,7 @@ package com.leatherswan.artisticendeavors.jpa.config.db;
 import com.leatherswan.artisticendeavors.jpa.enums.DataConfigProfile;
 //import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
+//import org.apache.tomcat.jdbc.pool.DataSource;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.MySQL5InnoDBDialect;
 import org.springframework.context.annotation.Bean;

@@ -12,7 +12,6 @@
 <div th:if="${currentUser == null}" class="container">
 	<div class="row social-button-row">
 		<div class="col-lg-7">
-<!--
 			<form name="fb_signin" id="fb_signin" th:action="@{/signin/facebook}" method="POST">
 				<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 				<input type="hidden" name="scope" value="email,user_posts,user_photos,user_friends"/>
@@ -36,7 +35,6 @@
 					<span th:text="#{label.google.sign.in.button}">[Sign In with Google]</span>
 				</button>
 			</form>
--->
 		</div>
 	</div>
 </div>
@@ -92,7 +90,7 @@
 		</button>
 		<select id="multiselect-badgeboy" multiple="multiple">
 		</select>
-		<!--<a href="http://goo.gl/0hhnZg" target="_blank" id="keyvalue" class="btn btn-default btn-xs"></a>-->
+		<a href="http://goo.gl/0hhnZg" target="_blank" id="keyvalue" class="btn btn-default btn-xs"></a>
 	</div>
 
 	<div id="badges"></div>

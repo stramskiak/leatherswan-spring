@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <div th:include="fragments/head :: head" th:remove="tag">Global Header</div>
 <head>
-<itemTitle th:text="#{product.view.page.itemTitle}"></itemTitle>
+<title th:text="#{product.view.page.title}"></title>
 
 <div th:if="${product.hasLocation()}" 
 		th:include="fragments/map :: functions" th:remove="tag">[Map Javascript]</div>
