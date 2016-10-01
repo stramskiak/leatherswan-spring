@@ -47,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Order(2)
 	@Configuration
 	@Profile(DataConfigProfile.MYSQL)
-	protected static class MyRemoteSqlWebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+	@ComponentScan("com.leatherswan.artisticendeavors.jpa")
+	protected static class MySqlWebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
 		@Autowired
 		private DataSource dataSource;

@@ -28,12 +28,13 @@ public class MySqlConfig extends JpaCommonConfig {
         dataSource.setUsername(getUser());
         dataSource.setPassword(getPassword());
         dataSource.setValidationQuery(getDatabaseValidationQuery());
-        dataSource.setTestOnBorrow(true);
-        dataSource.setTestOnReturn(true);
-        dataSource.setTestWhileIdle(true);
-        dataSource.setTimeBetweenEvictionRunsMillis(1800000);
-        dataSource.setNumTestsPerEvictionRun(3);
-        dataSource.setMinEvictableIdleTimeMillis(1800000);
+        dataSource.setInitialSize(1);
+        dataSource.setMaxActive(30);
+        dataSource.setMaxIdle(30);
+        dataSource.setMaxWait(15000);
+        dataSource.setRemoveAbandoned(true);
+        dataSource.setRemoveAbandonedTimeout(300);
+        dataSource.setLogAbandoned(true);
         return dataSource;
     }
 

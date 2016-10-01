@@ -26,6 +26,10 @@ import static java.util.stream.Collectors.joining;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /*
+* This file was added by stramskiak and is not part of the original demo
+* */
+
+/*
 @Controller
 //@RequestMapping(value = "/spring")
 public class SpringController {

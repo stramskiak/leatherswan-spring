@@ -16,6 +16,7 @@
 package com.leatherswan.artisticendeavors.jpa.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.ZonedDateTime;
 
 import com.leatherswan.artisticendeavors.jpa.enums.ProductDisplayType;
@@ -115,7 +116,8 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-    @Column(name = "product_content", nullable = false, length = MAX_PRODUCT_FEATURE_LENGTH)
+//    @Column(name = "product_content", nullable = false, length = MAX_PRODUCT_FEATURE_LENGTH)
+    @Column(name = "product_content", nullable = false, columnDefinition = "TEXT")
 	public String getFeatures() {
 		return features;
 	}
@@ -239,7 +241,7 @@ public class Product implements Serializable {
         this.modifiedByUser = modifiedByUser;
     }
 
-    @Column(name = "product_date", nullable = false)
+    @Column(name = "product_date", nullable = false, columnDefinition = "DATE")
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
     @CreatedDate
     public ZonedDateTime getProductDate() {

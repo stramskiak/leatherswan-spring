@@ -71,8 +71,9 @@ public class Post implements Serializable {
     @Column(name = "is_published", nullable = false)
     private Boolean isPublished = true;
 
-    @Column(name = "post_content", nullable = false, length = MAX_POST_CONTENT_LENGTH)
-    private String postContent;
+//    @Column(name = "post_content", nullable = false, length = MAX_POST_CONTENT_LENGTH)
+    @Column(name = "post_content", nullable = false, columnDefinition = "TEXT")
+   private String postContent;
 
     @Column(name = "post_source", length = 50)
     private String postSource = "NA";

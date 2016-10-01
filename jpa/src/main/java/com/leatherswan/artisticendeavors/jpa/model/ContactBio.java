@@ -30,17 +30,17 @@ public class ContactBio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "contact_bio_id")
+    @Column(name = "contact_bio_id", nullable = false)
     private Long contactBioId;
 
     @OneToOne
-    @JoinColumn(name = "contact_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
 
 //    @Column(name="contact_id")
 //    private Long contactId;
 
-    @Column(name = "bio")
+    @Column(name = "bio", columnDefinition = "TEXT")
     private String bio;
 	
     @Column(name = "image_url")

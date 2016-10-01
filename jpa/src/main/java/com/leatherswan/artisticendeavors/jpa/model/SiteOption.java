@@ -22,7 +22,7 @@ public class SiteOption implements Serializable {
     @NotEmpty
     private String name;
 
-    @Column(name = "option_value")
+    @Column(name = "option_value", columnDefinition = "TEXT")
     private String value;
 
     public Long getOptionId() {

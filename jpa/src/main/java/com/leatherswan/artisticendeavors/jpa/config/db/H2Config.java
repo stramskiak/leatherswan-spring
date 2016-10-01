@@ -36,7 +36,7 @@ public class H2Config extends JpaCommonConfig {
         dataSource.setTimeBetweenEvictionRunsMillis(1800000);
         dataSource.setNumTestsPerEvictionRun(3);
         dataSource.setMinEvictableIdleTimeMillis(1800000);
-        //dataSource.setMaxTotal(-1);
+        dataSource.setMaxActive(-1);
         return dataSource;
     }
 
