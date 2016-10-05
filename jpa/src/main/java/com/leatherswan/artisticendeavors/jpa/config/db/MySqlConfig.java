@@ -29,9 +29,9 @@ public class MySqlConfig extends JpaCommonConfig {
         dataSource.setPassword(getPassword());
         dataSource.setValidationQuery(getDatabaseValidationQuery());
         dataSource.setInitialSize(1);
-        dataSource.setMaxActive(30);
-        dataSource.setMaxIdle(30);
-        dataSource.setMaxWait(15000);
+        dataSource.setMaxActive(15);
+        dataSource.setMaxIdle(15);
+        dataSource.setMaxWait(25000);
         dataSource.setRemoveAbandoned(true);
         dataSource.setRemoveAbandonedTimeout(300);
         dataSource.setLogAbandoned(true);

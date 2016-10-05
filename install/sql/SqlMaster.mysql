@@ -10,6 +10,11 @@ SET FOREIGN_KEY_CHECKS=0;
 SELECT SCHEMA `dev_leatherswan` ;
 
 -- ----------------------------
+-- Table update example
+-- ----------------------------
+-- UPDATE `posts` SET `post_name`='SleepingBaby' WHERE `post_id`=1;
+
+-- ----------------------------
 -- Drop Table and View
 -- ----------------------------
 DROP TABLE IF EXISTS `user_product_ids`;
@@ -17,11 +22,9 @@ DROP TABLE IF EXISTS `post_product_ids`;
 DROP TABLE IF EXISTS `post_contact_ids`;
 DROP TABLE IF EXISTS `post_tag_ids`;
 DROP TABLE IF EXISTS `contact_category_ids`;
-DROP TABLE IF EXISTS `contact_genre_ids`;
 DROP TABLE IF EXISTS `contact_hobby_ids`;
 DROP TABLE IF EXISTS `contact_product_ids`;
 DROP TABLE IF EXISTS `product_category_ids`;
-DROP TABLE IF EXISTS `product_genre_ids`;
 DROP TABLE IF EXISTS `site_options`;
 DROP VIEW IF EXISTS `v_contact_hobbies`;
 DROP VIEW IF EXISTS `v_contact_phones`;
@@ -327,7 +330,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 CREATE TABLE `contact_bio` (
 `contact_bio_id`    bigint(20)    NOT NULL AUTO_INCREMENT,
 `contact_id`    bigint(20)    NOT NULL,
-`bio`    TEXT(2048),
+`bio`    text NOT NULL,
 `image_url`    varchar(200),
 `created_by_user`    varchar(50)    NOT NULL,
 `creation_time`       timestamp    NOT NULL, -- DEFAULT '0000-00-00 00:00:00',
@@ -378,7 +381,7 @@ CREATE TABLE `site_options`
 (
   `option_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `option_name` VARCHAR(50) NOT NULL,
-  `option_value` TEXT(96),
+  `option_value` text,
   PRIMARY KEY (`option_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -409,7 +412,7 @@ CREATE TABLE `posts` (
 `is_published`    tinyint(1)    NOT NULL DEFAULT '0',
 `is_contact_review`    tinyint(1)    NOT NULL DEFAULT '0',
 `is_product_review`    tinyint(1)    NOT NULL DEFAULT '0',
-`post_content`    text(2048)    NOT NULL,
+`post_content`    text    NOT NULL,
 `post_source`    varchar(50)    NOT NULL DEFAULT 'NA',
 `post_image`    varchar(200)     DEFAULT NULL,
 `click_count`    INT(11)    NOT NULL DEFAULT '0',
@@ -424,15 +427,13 @@ CONSTRAINT `posts_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (
 
 
 INSERT INTO `posts` VALUES ('1', '7', '11', '10', 'Sleeping Baby', 'SleepingBaby', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Making babies is great fun!', 'NA', 'NA', '0', '0', '0', '0');
-INSERT INTO `posts` VALUES ('2', '1', '11', '10', 'Angel', 'Angel', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
+INSERT INTO `posts` VALUES ('2', '1', '11', '10', 'Angel', 'angel', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A glorious angel and fun project. I put mine in a wedding scrapbook.', 'NA', 'NA', '0', '0', '0', '0');
 INSERT INTO `posts` VALUES ('3', '2', '11', '10', 'Great Jewelry', 'GreatJewelry', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Cant wait to see what comes next!', 'NA', 'NA', '0', '0', '0', '0');
 INSERT INTO `posts` VALUES ('4', '2', '11', '10', 'Fabulous', 'Fabulous', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Fun and playful.', 'NA', 'NA', '0', '0', '0', '0');
 INSERT INTO `posts` VALUES ('5', '2', '11', '10', 'Very Happy', 'VeryHappy', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'A riot of color and form.', 'NA', 'NA', '0', '0', '0', '0');
 INSERT INTO `posts` VALUES ('6', '9', '11', '10', 'Fun Logo', 'FunLogo', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Such a fun logo, it really has a history!', 'NA', 'NA', '0', '0', '0', '0');
 INSERT INTO `posts` VALUES ('7', '5', '11', '10', 'Excellent Instructions', 'ExcellentInstructions', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Complex pattern with step-by-step construction help.', 'NA', 'NA', '0', '0', '0', '0');
 INSERT INTO `posts` VALUES ('8', '1', '11', '10', 'Angel In Flight', 'AngelInFlight', '', '2015-02-23 18:32:10', '2015-02-23 18:32:10', 'REVIEW', 'LINK_SUMMARY', '0', '0', '1', 'Love my angel. A flight of fancy for the young at heart.', 'NA', 'NA', '0', '0', '0', '0');
-
--- UPDATE `posts` SET `post_name`='SleepingBaby' WHERE `post_id`=1;
 
 -- ----------------------------
 -- Table structure for tags
@@ -449,7 +450,7 @@ CREATE TABLE `tags` (
 INSERT INTO `tags` VALUES ('1', 'easy');
 INSERT INTO `tags` VALUES ('2', 'intermediate');
 INSERT INTO `tags` VALUES ('3', 'hard');
-INSERT INTO `tags` VALUES ('4', 'heilman');
+INSERT INTO `tags` VALUES ('4', 'easy');
 INSERT INTO `tags` VALUES ('5', 'stramski');
 INSERT INTO `tags` VALUES ('6', 'doit');
 INSERT INTO `tags` VALUES ('7', 'maker');
@@ -491,7 +492,7 @@ CREATE TABLE `products` (
 `display_type`    varchar(20)    NOT NULL DEFAULT 'LINK',
 `is_published`    tinyint(1)    NOT NULL DEFAULT '0',
 `is_sold`    tinyint(1)    NOT NULL DEFAULT '0',
-`product_content`    text(2048)    NOT NULL,
+`product_content`    text    NOT NULL,
 `product_source`    varchar(50)    NOT NULL DEFAULT 'NA',
 `product_image`    varchar(200)     DEFAULT NULL,
 `click_count`    INT(11)    NOT NULL DEFAULT '0',
@@ -630,4 +631,3 @@ CREATE TABLE `post_contact_ids` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 INSERT INTO `post_contact_ids` VALUES ('1', '7', '11');
-

@@ -41,10 +41,12 @@ public interface ContactService {
 
     // region Contact Bio -------------------------------------- */
 
+/*
     ContactBio findContactBioByContact(Contact contact);
     ContactBio addContactBio(ContactBioDTO contactBioDTO);
     ContactBio findContactBioById(Long contactBioId);
     ContactBio deleteContactBioById(Long contactBioId) throws ContactNotFoundException;
+*/
 
 
     // endregion

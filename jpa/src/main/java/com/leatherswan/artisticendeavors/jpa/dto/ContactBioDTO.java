@@ -10,8 +10,9 @@ import java.time.ZonedDateTime;
 
 public class ContactBioDTO {
 
-    private Long contactBioId;
-    private Contact contact;
+    private Long bioId;
+//    private Contact contact;
+    private Long contactId;
     private String imageUrl;
     private int version;
     private String createdByUser;
@@ -32,8 +33,8 @@ public class ContactBioDTO {
     }
 
     public ContactBioDTO(ContactBio contactBio) {
-        this.contactBioId=contactBio.getContactBioId();
-        this.contact=contactBio.getContact();
+        this.bioId =contactBio.getBioId();
+        this.contactId=contactBio.getContactId();
         this.bio=contactBio.getBio();
         this.imageUrl=contactBio.getImageUrl();
         this.createdByUser=contactBio.getCreatedByUser();
@@ -43,20 +44,28 @@ public class ContactBioDTO {
         this.version=contactBio.getVersion();
     }
 
-    public Long getContactBioId() {
-        return contactBioId;
+    public Long getBioId() {
+        return bioId;
     }
 
-    public void setContactBioId(Long contactBioId) {
-        this.contactBioId = contactBioId;
+    public void setBioId(Long bioId) {
+        this.bioId = bioId;
     }
 
-    public Contact getContact() {
+ /*   public Contact getContact() {
         return contact;
     }
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+*/
+    public Long getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(Contact contact) {
+        this.contactId = contact.getContactId();
     }
 
     public String getImageUrl() {
@@ -122,11 +131,11 @@ public class ContactBioDTO {
     }
 
     public boolean isNew() {
-        return (this.contactBioId == null);
+        return (this.bioId == null);
     }
 
  	public Long getId() {
-		return contactBioId;
+		return bioId;
 	}
 
 

@@ -3,9 +3,11 @@ package com.leatherswan.artisticendeavors.mail.dto;
 import com.leatherswan.artisticendeavors.jpa.model.validators.ExtendedEmailValidator;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.persistence.Basic;
 
+//@ComponentScan("com.leatherswan.artisticendeavors.jpa")
 public class MailDTO {
 
     private static final int MAX_LENGTH_EMAIL_ADDRESS = 65;

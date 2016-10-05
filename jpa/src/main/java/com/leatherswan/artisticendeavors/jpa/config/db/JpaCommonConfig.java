@@ -48,7 +48,7 @@ public abstract class JpaCommonConfig {
     @Autowired
     protected Environment environment;
 
-    @Value("#{ environment['entity.package'] }")
+    @Value("${entity.package}")
     private String entityPackage;
 
     @Bean

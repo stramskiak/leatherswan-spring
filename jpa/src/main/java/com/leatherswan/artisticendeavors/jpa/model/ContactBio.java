@@ -1,9 +1,6 @@
 package com.leatherswan.artisticendeavors.jpa.model;
 
 import com.leatherswan.artisticendeavors.jpa.dto.ContactBioDTO;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.data.annotation.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,8 +11,6 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-
-import static javax.persistence.AccessType.PROPERTY;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -32,13 +27,15 @@ public class ContactBio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "contact_bio_id", nullable = false)
     private Long contactBioId;
+//    @Column(name = "bio_id", nullable = false)
+//    private Long bioId;
 
-    @OneToOne
-    @JoinColumn(name = "contact_id", nullable = false)
-    private Contact contact;
+//    @OneToOne
+//    @JoinColumn(name = "contact_id", nullable = false)
+//    private Contact contact;
 
-//    @Column(name="contact_id")
-//    private Long contactId;
+    @Column(name="contact_id")
+    private Long contactId;
 
     @Column(name = "bio", columnDefinition = "TEXT")
     private String bio;
@@ -71,7 +68,7 @@ public class ContactBio implements Serializable {
     public ContactBio() {}
 
     public ContactBio(ContactBioDTO contactBioDTO) {
-            this.contactBioId=contactBioDTO.getContactBioId();
+            this.contactBioId =contactBioDTO.getBioId();
             this.bio=contactBioDTO.getBio();
             this.imageUrl=contactBioDTO.getImageUrl();
             this.createdByUser=contactBioDTO.getCreatedByUser();
@@ -86,6 +83,7 @@ public class ContactBio implements Serializable {
         return (this.contactBioId == 0);
     }
 
+/*
     public Contact getContact() {
         return contact;
     }
@@ -93,20 +91,20 @@ public class ContactBio implements Serializable {
         this.contact = contact;
 //        this.contactId = contact.getContactId();
     }
- /*   public Long getContactId() {
+*/
+    public Long getContactId() {
         return contactId;
     }
     public void setContactId(Long contactId) {
         this.contactId = contactId;
     }
-*/
 
-    public Long getContactBioId() {
+    public Long getBioId() {
         return contactBioId;
     }
 
-    public void setContactBioId(Long contactBioId) {
-        this.contactBioId = contactBioId;
+    public void setBioId(Long bioId) {
+        this.contactBioId = bioId;
     }
 
     public String getBio() {
@@ -166,8 +164,9 @@ public class ContactBio implements Serializable {
     @Override
     public String toString() {
         return new ToStringCreator(this)
-                .append("contactBioId", this.getContactBioId())
-                .append("contactId", this.contact.getContactId())
+                .append("bioId", this.getBioId())
+//                .append("contactId", this.contact.getContactId())
+                .append("contactId", this.contactId)
                 .append("new", this.isNew())
                 .append("createdByUser", this.getCreatedByUser())
                 .append("creationTime", this.getCreationTime())
@@ -186,7 +185,8 @@ public class ContactBio implements Serializable {
 
         public Builder(Contact contact, String bio, String imageUrl) {
             built = new ContactBio();
-            built.contact = contact;
+//            built.contact = contact;
+            built.contactId = contact.getContactId();
             built.bio = bio;
             built.imageUrl = imageUrl;
         }

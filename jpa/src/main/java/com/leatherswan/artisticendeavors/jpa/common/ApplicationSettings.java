@@ -9,7 +9,7 @@ For development: C:/Users/Anita/web/leatherswan/external.leatherswan.properties
 For Production: /home/stramska/web/leatherswan/external.leatherswan.properties
 */
 @Component
-@PropertySource("file:/home/stramska/web/leatherswan/external.leatherswan.properties")
+@PropertySource("file:C:/Users/Anita/web/leatherswan/external.leatherswan.properties")
 @ConfigurationProperties(prefix = "external")
 public class ApplicationSettings {
 

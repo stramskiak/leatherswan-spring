@@ -21,6 +21,6 @@ public interface ContactBioRepository extends CrudRepository<ContactBio, Long> {
 //    ContactBio findByContactId(long contact_id);
 //    ContactBio findByContactBioId(long contact_bio_id);
     ContactBio findByContactBioId(Long id);
-    ContactBio findByContact_ContactId(Long id);
+//    ContactBio findByContact_ContactId(Long id);
 
 }

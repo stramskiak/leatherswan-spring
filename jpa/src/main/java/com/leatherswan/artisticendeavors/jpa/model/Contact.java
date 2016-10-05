@@ -45,7 +45,7 @@ public class Contact implements Serializable {
     private String email;
     private int version;
 
-    private ContactBio contactBio;
+//    private ContactBio contactBio;
     private Set<ContactPhone> contactPhones;
     private Set<Hobby> hobbies;
     private Set<Post> posts;
@@ -190,13 +190,13 @@ public class Contact implements Serializable {
 
     // region Contact/Bio (Artist/Bio)
 
-    @OneToOne(mappedBy="contact", cascade = CascadeType.ALL)
-    public ContactBio getContactBio() {
-        return contactBio;
-    }
-    public void setContactBio(ContactBio contactBio) {
-        this.contactBio = contactBio;
-    }
+//    @OneToOne(mappedBy="contact", cascade = CascadeType.ALL)
+//    public ContactBio getContactBio() {
+//        return contactBio;
+//    }
+//    public void setContactBio(ContactBio contactBio) {
+//        this.contactBio = contactBio;
+//    }
 
     // endregion
 

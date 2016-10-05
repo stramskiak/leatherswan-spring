@@ -32,8 +32,10 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private HobbyRepository hobbyRepository;
 
+/*
     @Autowired
     private ContactBioRepository contactBioRepository;
+*/
 
 //    @Autowired
 //    private ProductRepository productRepository;
@@ -215,6 +217,7 @@ public class ContactServiceImpl implements ContactService {
         return contactPhone;
     }
 
+/*
     @Override
     public ContactBio findContactBioByContact(Contact contact) {
         return contactBioRepository.findByContact_ContactId(contact.getContactId());
@@ -236,6 +239,7 @@ public class ContactServiceImpl implements ContactService {
         contactBioRepository.delete(contactBio);
         return contactBio;
     }
+*/
 
     @Transactional(readOnly = true)
     public List<ContactPhone> findContactPhonesByContactId(Long contactId) {
