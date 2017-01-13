@@ -15,5 +15,5 @@ Implemented in this project:
  @Controller Advice, Custom Exception Handling, Tagging with Typeahead, Bootstrap3,
  Site Administration Dashboard and Thymeleaf*
 
-A working demo of the site is online at (http://leatherswan.com)
+A working demo of the site is not available at this time.
 
